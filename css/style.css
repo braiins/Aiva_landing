@@ -1,3 +1,15 @@
+.color-purple-light {
+  color: #8D01C4; }
+
+.color-purple-dark {
+  color: #590297; }
+
+.color-gray {
+  color: #565656; }
+
+.color-white {
+  color: white; }
+
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -74,81 +86,231 @@ textarea {
   color: #000;
   padding: 0.2em 0; }
 
-.clearfix:before,
-.clearfix:after {
+.clearfix:before, .centerColumn:before, .section:before, #footer .stats:before,
+.clearfix:after,
+.centerColumn:after,
+.section:after,
+#footer .stats:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */ }
 
-.clearfix:after {
+.clearfix:after, .centerColumn:after, .section:after, #footer .stats:after {
   clear: both; }
 
-@media print {
-  *,
-  *:before,
-  *:after,
-  *:first-letter,
-  *:first-line {
-    background: transparent !important;
-    color: #000 !important;
-    /* Black prints faster:
-       http://www.sanbeiji.com/archives/953 */
-    box-shadow: none !important;
-    text-shadow: none !important; }
+body {
+  font-family: sans-serif;
+  font-size: 10px; }
 
-  a,
-  a:visited {
-    text-decoration: underline; }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; }
 
-  a[href]:after {
-    content: " (" attr(href) ")"; }
+.text-left {
+  text-align: left; }
 
-  abbr[title]:after {
-    content: " (" attr(title) ")"; }
+.text-center {
+  text-align: center; }
 
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
-    content: ""; }
+.text-right {
+  text-align: right; }
 
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid; }
+.bold {
+  font-weight: bold; }
 
-  /*
-   * Printing Tables:
-   * http://css-discuss.incutio.com/wiki/Printing_Tables
-   */
-  thead {
-    display: table-header-group; }
+.bigger-font {
+  font-size: 1.6rem; }
 
-  tr,
-  img {
-    page-break-inside: avoid; }
+p {
+  line-height: 2em;
+  font-size: 1.2rem; }
 
-  img {
-    max-width: 100% !important; }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3; }
-
-  h2,
-  h3 {
-    page-break-after: avoid; } }
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden; }
+  padding: 0;
+  margin: 0;
+  min-width: 1000px; }
 
-body {
-  overflow-y: scroll; }
+* {
+  box-sizing: border-box; }
+
+.animatedAll, .section.purple:before, #header .logo, #header .bgImage {
+  -webkit-transition: all 150ms ease-in-out;
+  -moz-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out; }
+
+.centerColumn {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto; }
+
+.half {
+  position: relative;
+  float: left;
+  width: 50%; }
+
+.third {
+  position: relative;
+  float: left;
+  width: 33.3333%; }
+
+.padded {
+  padding: 0 15px; }
+
+.section {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  padding: 64px 0 96px; }
+  .section.purple {
+    color: white; }
+    .section.purple:before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #8D01C4;
+      z-index: -1; }
+    .section.purple.right:before {
+      left: 10%; }
+    .section.purple.left:before {
+      right: 10%; }
+  .section .title {
+    color: #8D01C4;
+    font-size: 3rem; }
+  .section.purple .title {
+    color: #fff; }
+
+#header {
+  padding-bottom: 200px;
+  overflow: hidden; }
+  #header .logo {
+    margin: 100px 0; }
+  #header p {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); }
+  #header .bgImage {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    max-width: 70%; }
+  #header .bgClaims {
+    pointer-events: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    text-align: center;
+    font-size: 6.5rem;
+    font-weight: bold;
+    color: #8D01C4;
+    opacity: .1;
+    filter: blur(2px); }
+  #header .content {
+    position: relative;
+    z-index: 2; }
+
+#why .stats {
+  text-align: center;
+  margin-top: 6rem; }
+  #why .stats .num {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: .3em; }
+  #why .stats .label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.8; }
+
+#how {
+  overflow: visible;
+  z-index: 2; }
+  #how .raised {
+    position: relative;
+    margin-top: -6rem;
+    display: inline-block;
+    padding: 48px 40px;
+    box-shadow: 7px 7px 24px 2px rgba(0, 0, 0, 0.14);
+    background-color: #fff;
+    color: #565656; }
+  #how .usersIcon {
+    margin-top: 6rem;
+    max-width: 70%; }
+
+#who .usersWrapper {
+  margin-top: 4rem; }
+  #who .usersWrapper .user--title {
+    margin: 2rem 0 1rem;
+    font-size: 3rem; }
+  #who .usersWrapper .user--info {
+    font-size: 1.5rem;
+    font-weight: bold; }
+
+#footer {
+  position: relative;
+  padding-bottom: 30px;
+  text-align: center; }
+  #footer .stats {
+    padding: 0 4rem;
+    margin: 3rem 0;
+    text-align: center;
+    color: #8D01C4; }
+    #footer .stats .entry {
+      margin: 4rem 0; }
+      #footer .stats .entry .num {
+        font-size: 5rem;
+        font-weight: bold; }
+      #footer .stats .entry .label {
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.8; }
+  #footer .logo {
+    display: inline-block;
+    margin: 0 auto 64px; }
+  #footer .copy {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #565656;
+    margin: 16px; }
+
+@media (max-width: 1200px) {
+  #header .bgImage {
+    right: -3rem; }
+  #header .logo {
+    margin: 70px 0; }
+  #header .bgClaims {
+    font-size: 5rem; }
+
+  #why .stats .num {
+    font-size: 3.5rem; }
+  #why .stats .label {
+    font-size: 1.2rem; }
+
+  #who .usersWrapper .user--title {
+    font-size: 2.5rem; }
+  #who .usersWrapper .user--info {
+    font-size: 1.2rem; }
+
+  .centerColumn {
+    max-width: 100%;
+    padding: 0 15px; }
+
+  .section.purple:before {
+    left: 0 !important;
+    right: 0 !important; }
+
+  .bigger-font {
+    font-size: 1.4rem; }
+
+  p {
+    line-height: 1.8em;
+    font-size: 1.1rem; } }
 
 /*# sourceMappingURL=style.css.map */

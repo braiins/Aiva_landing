@@ -1,0 +1,274 @@
+@mixin transition($trans) {
+  -webkit-transition: $trans;
+     -moz-transition: $trans;
+          transition: $trans;
+}
+
+$small: 1200px;
+$minWidth: 1000px;
+
+html, body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    min-width: $minWidth;
+}
+* {
+    box-sizing: border-box;
+}
+
+.animatedAll {
+  -webkit-transition: all 150ms ease-in-out;
+     -moz-transition: all 150ms ease-in-out;
+          transition: all 150ms ease-in-out;
+}
+
+
+.centerColumn {
+    @extend .clearfix;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.half {
+    position: relative;
+    float: left;
+    width: 50%;
+}
+.third {
+    position: relative;
+    float: left;
+    width: 33.3333%;
+}
+
+.padded {
+    padding: 0 15px;
+}
+
+
+.section {
+    @extend .clearfix;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    padding: 64px 0 96px;
+
+    &.purple {
+        color: white;
+
+        &:before {
+            @extend .animatedAll;
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 0; right: 0;
+            background-color: $purple-light;
+            z-index: -1;
+        }
+
+        &.right:before { left: 10%; }
+        &.left:before { right: 10%; }
+    }
+
+    .title {
+        color: $purple-light;
+        font-size: 3rem;
+    }
+    &.purple .title { color: #fff; }
+}
+
+
+// Individual sections
+
+#header {
+    padding-bottom: 200px;
+    overflow: hidden;
+
+    .logo {
+        @extend .animatedAll;
+        margin: 100px 0;
+    }
+    p {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    }
+
+    .bgImage {
+        @extend .animatedAll;
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        right: 0;
+        max-width: 70%;
+    }
+
+    .bgClaims {
+        pointer-events: none;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        position: absolute;
+        bottom: 0;
+        right: 1rem;
+
+        text-align: center;
+        font-size: 6.5rem;
+        font-weight: bold;
+
+        color: $purple-light;
+        opacity: .1;
+        filter: blur(2px);
+    }
+
+    .content { position: relative; z-index: 2; }
+}
+
+#why {
+    .stats {
+        text-align: center;
+        margin-top: 6rem;
+
+        .num {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: .3em;
+        }
+        .label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.8;
+        }
+    }
+}
+
+#how {
+    // Raised box overflows the top edge
+    overflow: visible;
+    z-index: 2;
+
+    .raised {
+        position: relative;
+        margin-top: -6rem;
+
+        display: inline-block;
+        padding: 48px 40px;
+
+        box-shadow: 7px 7px 24px 2px rgba(0, 0, 0, 0.14);
+        background-color: #fff;
+        color: $gray;
+    }
+
+    .usersIcon {
+        margin-top: 6rem;
+        max-width: 70%;
+    }
+}
+
+#who {
+    .userIcon {}
+
+    .usersWrapper {
+        margin-top: 4rem;
+
+        .user--icon {}
+        .user--title {
+            margin: 2rem 0 1rem;
+            font-size: 3rem;
+        }
+        .user--info {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+}
+
+
+#footer {
+    position: relative;
+    padding-bottom: 30px;
+    text-align: center;
+
+
+    .stats {
+        @extend .clearfix;
+
+        padding: 0 4rem;
+        margin: 3rem 0;
+
+        text-align: center;
+        color: $purple-light;
+
+        .entry {
+            margin: 4rem 0;
+
+            .num {
+                font-size: 5rem;
+                font-weight: bold;
+            }
+            .label {
+                font-size: 1.5rem;
+                font-weight: bold;
+                line-height: 1.8;
+            }
+
+        }
+    }
+
+    .logo {
+        display: inline-block;
+        margin: 0 auto 64px;
+    }
+    .copy {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color: $gray;
+        margin: 16px;
+    }
+}
+
+
+@media (max-width: $small) {
+    // Speciffic sections
+    #header {
+        .bgImage { right: -3rem; }
+        .logo { margin: 70px 0; }
+
+        .bgClaims {
+            //right: 1rem;
+            font-size: 5rem;
+        }
+    }
+
+    #why .stats {
+        .num { font-size: 3.5rem; }
+        .label { font-size: 1.2rem; }
+    }
+
+    #who .usersWrapper {
+        .user--title { font-size: 2.5rem; }
+        .user--info { font-size: 1.2rem; }
+    }
+
+
+    // Globals
+    .centerColumn {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .section.purple:before {
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .bigger-font { font-size: 1.4rem; }
+
+    p {
+        line-height: 1.8em;
+        font-size: 1.1rem;
+    }
+}
