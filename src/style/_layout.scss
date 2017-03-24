@@ -4,7 +4,6 @@
           transition: $trans;
 }
 
-$small: 1200px;
 $minWidth: 1000px;
 
 html, body {
@@ -45,7 +44,6 @@ html, body {
 .padded {
     padding: 0 15px;
 }
-
 
 .section {
     @extend .clearfix;
@@ -116,7 +114,7 @@ html, body {
 
         text-align: center;
         font-size: 6.5rem;
-        font-weight: bold;
+        font-weight: 800;
 
         color: $purple-light;
         opacity: .1;
@@ -231,7 +229,17 @@ html, body {
 }
 
 
-@media (max-width: $small) {
+@media (max-width: 1400px) {
+    .centerColumn { padding: 0 15px; }
+    .centerColumn > .padded:first-child { padding-left: 0; }
+    .centerColumn > .padded:last-child { padding-right: 0; }
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .centerColumn { max-width: 950px; }
+}
+
+@media (max-width: 1200px) {
     // Speciffic sections
     #header {
         .bgImage { right: -3rem; }

@@ -100,8 +100,11 @@ textarea {
   clear: both; }
 
 body {
-  font-family: sans-serif;
+  font-family: "myriad-pro", sans-serif;
   font-size: 10px; }
+
+.font-domus {
+  font-family: "jaf-domus-titling-web", sans-serif; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0; }
@@ -208,7 +211,7 @@ html, body {
     right: 1rem;
     text-align: center;
     font-size: 6.5rem;
-    font-weight: bold;
+    font-weight: 800;
     color: #8D01C4;
     opacity: .1;
     filter: blur(2px); }
@@ -280,6 +283,18 @@ html, body {
     color: #565656;
     margin: 16px; }
 
+@media (max-width: 1400px) {
+  .centerColumn {
+    padding: 0 15px; }
+
+  .centerColumn > .padded:first-child {
+    padding-left: 0; }
+
+  .centerColumn > .padded:last-child {
+    padding-right: 0; } }
+@media (min-width: 1200px) and (max-width: 1400px) {
+  .centerColumn {
+    max-width: 950px; } }
 @media (max-width: 1200px) {
   #header .bgImage {
     right: -3rem; }
