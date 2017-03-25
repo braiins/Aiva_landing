@@ -10,27 +10,6 @@
 .color-white {
   color: white; }
 
-/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4; }
-
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * These selection rule sets have to be separate.
- * Customize the background color to match your design.
- */
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none; }
@@ -38,44 +17,6 @@ html {
 ::selection {
   background: #b3d4fc;
   text-shadow: none; }
-
-/*
- * A better looking default horizontal rule
- */
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0; }
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle; }
-
-/*
- * Remove default fieldset styles.
- */
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0; }
-
-/*
- * Allow only vertical resizing of textareas.
- */
-textarea {
-  resize: vertical; }
 
 /* ==========================================================================
    Browser Upgrade Prompt
@@ -86,20 +27,21 @@ textarea {
   color: #000;
   padding: 0.2em 0; }
 
-.clearfix:before, .centerColumn:before, .section:before, #footer .stats:before,
+.clearfix:before, .centerColumn:before, .section:before, #who .usersWrapper:before, #footer .stats:before,
 .clearfix:after,
 .centerColumn:after,
 .section:after,
+#who .usersWrapper:after,
 #footer .stats:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */ }
 
-.clearfix:after, .centerColumn:after, .section:after, #footer .stats:after {
+.clearfix:after, .centerColumn:after, .section:after, #who .usersWrapper:after, #footer .stats:after {
   clear: both; }
 
-body {
+html, body {
   font-family: "myriad-pro", sans-serif;
   font-size: 10px; }
 
@@ -118,15 +60,16 @@ h1, h2, h3, h4, h5, h6 {
 .text-right {
   text-align: right; }
 
-.bold {
-  font-weight: bold; }
-
-.bigger-font {
-  font-size: 1.6rem; }
-
 p {
-  line-height: 2em;
-  font-size: 1.2rem; }
+  font-size: 1.5rem;
+  line-height: 2.22em;
+  font-weight: 400;
+  margin-top: 0; }
+
+.emphasis {
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.77em; }
 
 html, body {
   width: 100%;
@@ -142,19 +85,19 @@ html, body {
   -moz-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out; }
 
+.relFloat, .half, .third, #how .how--left, #how .how--righ {
+  position: relative;
+  float: left; }
+
 .centerColumn {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto; }
 
 .half {
-  position: relative;
-  float: left;
   width: 50%; }
 
 .third {
-  position: relative;
-  float: left;
   width: 33.3333%; }
 
 .padded {
@@ -163,8 +106,7 @@ html, body {
 .section {
   overflow-x: hidden;
   position: relative;
-  width: 100%;
-  padding: 64px 0 96px; }
+  width: 100%; }
   .section.purple {
     color: white; }
     .section.purple:before {
@@ -173,25 +115,26 @@ html, body {
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 0;
-      right: 0;
       background-color: #8D01C4;
-      z-index: -1; }
+      z-index: -1;
+      width: 88%; }
     .section.purple.right:before {
-      left: 10%; }
+      right: 0; }
     .section.purple.left:before {
-      right: 10%; }
+      left: 0; }
   .section .title {
     color: #8D01C4;
-    font-size: 3rem; }
+    font-size: 4.3rem;
+    font-weight: 800;
+    margin-bottom: 2.5rem; }
   .section.purple .title {
     color: #fff; }
 
 #header {
-  padding-bottom: 200px;
+  padding: 130px 0;
   overflow: hidden; }
   #header .logo {
-    margin: 100px 0; }
+    margin: 0 0 100px; }
   #header p {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); }
   #header .bgImage {
@@ -200,7 +143,8 @@ html, body {
     z-index: 1;
     bottom: 0;
     right: 0;
-    max-width: 70%; }
+    max-width: 40%;
+    min-width: 600px; }
   #header .bgClaims {
     pointer-events: none;
     list-style-type: none;
@@ -208,82 +152,114 @@ html, body {
     margin: 0;
     position: absolute;
     bottom: 0;
-    right: 1rem;
+    right: -15%;
     text-align: center;
-    font-size: 6.5rem;
+    font-size: 16rem;
+    line-height: 0.75em;
     font-weight: 800;
-    color: #8D01C4;
-    opacity: .1;
-    filter: blur(2px); }
+    color: #590297;
+    opacity: 0.07; }
   #header .content {
     position: relative;
     z-index: 2; }
 
-#why .stats {
-  text-align: center;
-  margin-top: 6rem; }
-  #why .stats .num {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: .3em; }
-  #why .stats .label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1.8; }
+#why {
+  padding: 95px 0 110px; }
+  #why .stats {
+    text-align: center;
+    margin-top: 6rem; }
+    #why .stats .num {
+      font-size: 6rem;
+      font-weight: 800;
+      margin-bottom: .3em; }
+    #why .stats .label {
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.8; }
 
 #how {
   overflow: visible;
   z-index: 2; }
+  #how .how--left {
+    width: 45%; }
+  #how .how--righ {
+    width: 55%; }
   #how .raised {
     position: relative;
-    margin-top: -6rem;
+    margin: -2rem 0 10rem;
     display: inline-block;
-    padding: 48px 40px;
-    box-shadow: 7px 7px 24px 2px rgba(0, 0, 0, 0.14);
+    padding: 8rem 7rem 12rem;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.08), 16px 16px 40px 0px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.08), 16px 16px 40px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.08), 16px 16px 40px 0px rgba(0, 0, 0, 0.08);
     background-color: #fff;
     color: #565656; }
+    #how .raised .emphasis {
+      margin: 5rem 0; }
+    #how .raised > *:last-child {
+      margin-bottom: 0; }
   #how .usersIcon {
-    margin-top: 6rem;
-    max-width: 70%; }
+    margin-top: 18rem;
+    max-width: 30%; }
 
-#who .usersWrapper {
-  margin-top: 4rem; }
-  #who .usersWrapper .user--title {
-    margin: 2rem 0 1rem;
-    font-size: 3rem; }
-  #who .usersWrapper .user--info {
-    font-size: 1.5rem;
-    font-weight: bold; }
+#who {
+  padding: 8rem 0 16rem; }
+  #who .usersWrapper {
+    margin-top: 6rem; }
+    #who .usersWrapper .user--icon {
+      max-width: 43%; }
+    #who .usersWrapper .user--title {
+      font-size: 3.8rem;
+      margin: 2rem 0 1rem; }
+    #who .usersWrapper .user--info {
+      font-size: 2rem;
+      line-height: 1.77em;
+      font-weight: 600; }
 
 #footer {
+  padding: 10rem 0 16rem;
   position: relative;
-  padding-bottom: 30px;
   text-align: center; }
   #footer .stats {
     padding: 0 4rem;
-    margin: 3rem 0;
+    margin: 3rem 0 8rem;
     text-align: center;
     color: #8D01C4; }
     #footer .stats .entry {
       margin: 4rem 0; }
       #footer .stats .entry .num {
-        font-size: 5rem;
-        font-weight: bold; }
+        font-size: 9rem;
+        font-weight: 800;
+        margin-bottom: -.1em; }
       #footer .stats .entry .label {
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.8; }
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.8em; }
   #footer .logo {
     display: inline-block;
-    margin: 0 auto 64px; }
+    margin: 0 auto 64px;
+    max-width: 15%; }
   #footer .copy {
+    font-size: 1.4rem;
     position: absolute;
     bottom: 0;
     right: 0;
     color: #565656;
-    margin: 16px; }
+    margin: 2.7rem; }
 
-@media (max-width: 1400px) {
+@media (max-width: 1500px) {
+  html, body {
+    font-size: 9px; }
+
+  .centerColumn {
+    max-width: 85%; }
+
+  .section.purple:before {
+    width: 95%; }
+
+  #how .usersIcon {
+    margin-top: 10rem; } }
+@media (max-width: 1200px) {
   .centerColumn {
     padding: 0 15px; }
 
@@ -291,41 +267,15 @@ html, body {
     padding-left: 0; }
 
   .centerColumn > .padded:last-child {
-    padding-right: 0; } }
-@media (min-width: 1200px) and (max-width: 1400px) {
-  .centerColumn {
-    max-width: 950px; } }
-@media (max-width: 1200px) {
-  #header .bgImage {
-    right: -3rem; }
-  #header .logo {
-    margin: 70px 0; }
-  #header .bgClaims {
-    font-size: 5rem; }
-
-  #why .stats .num {
-    font-size: 3.5rem; }
-  #why .stats .label {
-    font-size: 1.2rem; }
-
-  #who .usersWrapper .user--title {
-    font-size: 2.5rem; }
-  #who .usersWrapper .user--info {
-    font-size: 1.2rem; }
-
-  .centerColumn {
-    max-width: 100%;
-    padding: 0 15px; }
+    padding-right: 0; }
 
   .section.purple:before {
-    left: 0 !important;
-    right: 0 !important; }
+    width: 100%; }
 
-  .bigger-font {
-    font-size: 1.4rem; }
+  .how--left {
+    width: 55% !important; }
 
-  p {
-    line-height: 1.8em;
-    font-size: 1.1rem; } }
+  .how--righ {
+    width: 45% !important; } }
 
 /*# sourceMappingURL=style.css.map */

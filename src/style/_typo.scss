@@ -1,5 +1,10 @@
-body { font-family: "myriad-pro", sans-serif; font-size: 10px; }
-.font-domus { font-family: "jaf-domus-titling-web", sans-serif; }
+html, body {
+    font-family: "myriad-pro", sans-serif;
+    font-size: 10px;
+}
+.font-domus {
+    font-family: "jaf-domus-titling-web", sans-serif;
+}
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -9,11 +14,16 @@ h1, h2, h3, h4, h5, h6 {
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 
-.bold { font-weight: bold; }
-.bigger-font { font-size: 1.6rem; }
-
 
 p {
-    line-height: 2em;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    line-height: 2.22em;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.emphasis {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.77em;
 }
