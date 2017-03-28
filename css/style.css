@@ -129,7 +129,8 @@ html, body {
 .section {
   overflow-x: hidden;
   position: relative;
-  width: 100%; }
+  width: 100%;
+  background: #fff; }
   .section.purple {
     color: white; }
     .section.purple:before {
@@ -223,6 +224,7 @@ html, body {
     transition-delay: 0.5s; }
 
 #header {
+  z-index: 1;
   padding: 50px 0 120px;
   overflow: hidden; }
   #header .note {
@@ -249,9 +251,9 @@ html, body {
     -webkit-transform-origin: bottom;
     -moz-transform-origin: bottom;
     transform-origin: bottom;
-    -webkit-transition: all 600ms ease-in-out;
-    -moz-transition: all 600ms ease-in-out;
-    transition: all 600ms ease-in-out; }
+    -webkit-transition: transform 600ms ease-in-out;
+    -moz-transition: transform 600ms ease-in-out;
+    transition: transform 600ms ease-in-out; }
   #header .bgClaims {
     pointer-events: none;
     list-style-type: none;
@@ -290,6 +292,7 @@ html, body {
     transform: none; }
 
 #why {
+  z-index: 2;
   padding: 95px 0 110px; }
   #why .stats {
     text-align: center; }
@@ -302,10 +305,14 @@ html, body {
       font-size: 2.8rem;
       font-weight: 600;
       line-height: 1.5; }
+  #why #why--num {
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: -.3em; }
 
 #how {
-  overflow: visible;
-  z-index: 2; }
+  z-index: 3;
+  overflow: visible; }
   #how .raised {
     position: relative;
     margin: -2rem 0 10rem;
@@ -351,20 +358,8 @@ html, body {
       #how .how--map .how--head--wrap .how--head--head,
       #how .how--map .how--head--wrap .how--head--logo {
         position: relative;
-        margin-top: 16px;
-        z-index: 2;
-        opacity: 0;
-        -webkit-transform: translateY(-1rem);
-        -moz-transform: translateY(-1rem);
-        transform: translateY(-1rem);
-        -webkit-transition: all 200ms ease-in-out;
-        -moz-transition: all 200ms ease-in-out;
-        transition: all 200ms ease-in-out; }
-      #how .how--map .how--head--wrap .how--head--logo {
-        -webkit-transition-delay: .08s;
-        -moz-transition-delay: .08s;
-        transition-delay: .08s;
-        margin-top: 16px; }
+        margin: 16px auto 0;
+        z-index: 2; }
     #how .how--map .how--house--devices {
       position: absolute;
       top: 0;
@@ -377,11 +372,7 @@ html, body {
           width: 37px;
           height: 37px;
           margin: 0 auto;
-          background: transparent url("../img/how--device.png") no-repeat center center;
-          transform: scale(0.2);
-          -webkit-transition: all 300ms ease-in-out;
-          -moz-transition: all 300ms ease-in-out;
-          transition: all 300ms ease-in-out; }
+          background: transparent url("../img/how--device.png") no-repeat center center; }
           #how .how--map .how--house--devices .device .img:after {
             display: none;
             content: '';
@@ -404,56 +395,12 @@ html, body {
         font-family: "jaf-domus-titling-web", sans-serif;
         white-space: nowrap;
         margin: 0.5em;
-        text-align: center;
-        opacity: 0;
-        -webkit-transition: opacity 300ms ease-in-out;
-        -moz-transition: opacity 300ms ease-in-out;
-        transition: opacity 300ms ease-in-out; }
-      #how .how--map .how--house--devices .device:nth-child(1) .img,
-      #how .how--map .how--house--devices .device:nth-child(1) .label {
-        -webkit-transition-delay: 0.2s;
-        -moz-transition-delay: 0.2s;
-        transition-delay: 0.2s; }
-      #how .how--map .how--house--devices .device:nth-child(2) .img,
-      #how .how--map .how--house--devices .device:nth-child(2) .label {
-        -webkit-transition-delay: 0.4s;
-        -moz-transition-delay: 0.4s;
-        transition-delay: 0.4s; }
-      #how .how--map .how--house--devices .device:nth-child(3) .img,
-      #how .how--map .how--house--devices .device:nth-child(3) .label {
-        -webkit-transition-delay: 0.6s;
-        -moz-transition-delay: 0.6s;
-        transition-delay: 0.6s; }
-      #how .how--map .how--house--devices .device:nth-child(4) .img,
-      #how .how--map .how--house--devices .device:nth-child(4) .label {
-        -webkit-transition-delay: 0.8s;
-        -moz-transition-delay: 0.8s;
-        transition-delay: 0.8s; }
-      #how .how--map .how--house--devices .device:nth-child(5) .img,
-      #how .how--map .how--house--devices .device:nth-child(5) .label {
-        -webkit-transition-delay: 1s;
-        -moz-transition-delay: 1s;
-        transition-delay: 1s; }
-      #how .how--map .how--house--devices .pulseCircle {
-        background-color: #8D01C4;
-        position: absolute;
-        width: 5em;
-        height: 5em;
-        top: -0.5em;
-        left: 0.5em; }
-  #how.show-devices .how--house--devices .img {
-    transform: scale(1) !important; }
-  #how.show-labels .how--house--devices .label {
-    opacity: 1 !important; }
+        text-align: center; }
   #how.show-circles .how--head--wrap:after, #how.show-circles .how--house--devices .img:after {
     display: block !important; }
-  #how.show-logo .how--head--wrap .how--head--head, #how.show-logo .how--head--wrap .how--head--logo {
-    -webkit-transform: none;
-    -moz-transform: none;
-    transform: none;
-    opacity: 1; }
 
 #who {
+  z-index: 4;
   padding: 8rem 0 16rem; }
   #who .usersWrapper {
     margin-top: 6rem; }
@@ -468,6 +415,7 @@ html, body {
       font-weight: 600; }
 
 #footer {
+  z-index: 5;
   padding: 10rem 0 16rem;
   position: relative;
   text-align: center; }

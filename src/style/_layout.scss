@@ -49,6 +49,7 @@ html, body {
     overflow-x: hidden;
     position: relative;
     width: 100%;
+    background: #fff;
 
     &.purple {
         color: white;
@@ -139,6 +140,7 @@ html, body {
 
 
 #header {
+    z-index: 1;
     padding: 50px 0 120px;
     overflow: hidden;
 
@@ -169,7 +171,7 @@ html, body {
 
         @include transform(translate(65%, 0) scale(1.3));
         @include transformOrigin(bottom);
-        @include transition(all 600ms ease-in-out);
+        @include transition(transform 600ms ease-in-out);
     }
 
     .bgClaims {
@@ -212,6 +214,7 @@ html, body {
 }
 
 #why {
+    z-index: 2;
     padding: 95px 0 110px;
 
     .stats {
@@ -229,14 +232,21 @@ html, body {
             line-height: 1.5;
         }
     }
+
+    // The number itself
+    #why--num {
+        font-size: 2.5em;
+        display: block;
+        margin-bottom: -.3em;
+    }
 }
 
 #how {
+    z-index: 3;
     $devicesCount: 5;
 
     // Raised box overflows the top edge
     overflow: visible;
-    z-index: 2;
 
     .raised {
         position: relative;
@@ -293,19 +303,8 @@ html, body {
             .how--head--head,
             .how--head--logo {
                 position: relative;
-                margin-top: 16px;
+                margin: 16px auto 0;
                 z-index: 2;
-
-                opacity: 0;
-                @include transform(translateY(-1rem));
-                @include transition(all 200ms ease-in-out);
-            }
-            .how--head--head {}
-            .how--head--logo {
-                -webkit-transition-delay: .08s;
-                -moz-transition-delay: .08s;
-                transition-delay: .08s;
-                margin-top: 16px;
             }
         }
 
@@ -323,8 +322,6 @@ html, body {
                     height: 37px;
                     margin: 0 auto;
                     background: transparent url('../img/how--device.png') no-repeat center center;
-                    transform: scale(0.2);
-                    @include transition(all 300ms ease-in-out);
 
                     // Won't be shown by default
                     &:after {
@@ -344,53 +341,18 @@ html, body {
                 white-space: nowrap;
                 margin: 0.5em;
                 text-align: center;
-
-                opacity: 0;
-                @include transition(opacity 300ms ease-in-out);
-            }
-
-            // Delay each each device img and label
-            @for $i from 1 through $devicesCount {
-                .device:nth-child(#{$i}) .img,
-                .device:nth-child(#{$i}) .label {
-                    @include transitionDelay(0.2s * $i);
-                }
-            }
-
-            .pulseCircle {
-                background-color: $purple-light;
-
-                position: absolute;
-                width: 5em;
-                height: 5em;
-
-                top: -0.5em;
-                left: 0.5em;
             }
         }
     }
 
 
-
-    // Scale-in device images
-    &.show-devices .how--house--devices .img { transform: scale(1) !important; }
-
-    // Fade-in location labels
-    &.show-labels .how--house--devices .label { opacity: 1 !important; }
-
     // Show the pulsing circles
     &.show-circles .how--head--wrap:after,
     &.show-circles .how--house--devices .img:after { display: block !important; }
-
-    // Fade-in logo
-    &.show-logo .how--head--wrap .how--head--head,
-    &.show-logo .how--head--wrap .how--head--logo {
-        @include transform(none);
-        opacity: 1;
-    }
 }
 
 #who {
+    z-index: 4;
     padding: 8rem 0 16rem;
 
     .userIcon {}
@@ -415,6 +377,7 @@ html, body {
 }
 
 #footer {
+    z-index: 5;
     padding: 10rem 0 16rem;
 
     position: relative;
