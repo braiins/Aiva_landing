@@ -17,7 +17,7 @@ var paralaxCtrl = new ScrollMagic.Controller({
  * to animate scroll instead of jump
  */
 controller.scrollTo(function scroll(newpos) {
-    TweenLite.to(window, 0.5, { scrollTo: { y: newpos } });
+    TweenLite.to(window, 1.5, { scrollTo: { y: newpos }, ease: Power2.easeOut });
 });
 
 
@@ -125,7 +125,7 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'header', sections.header.el),
 })
     .setClassToggle(sections.header.menu, 'active')
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
 
@@ -141,7 +141,7 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'why', sections.why.el),
 })
     .setClassToggle(sections.why.menu, 'active')
-    .addIndicators()
+    // .addIndicators()
     // Tween the 65' if it's not already there
     .on('enter', function() {
         if (__why__.values.over65 !== 560) {
@@ -167,7 +167,7 @@ paralaxTimelineHeader.to('#header .hand', 1.3, { marginBottom: -500, ease: Linea
 
 new ScrollMagic.Scene({ triggerElement: sections.why.el, duration: '100%' })
     .setTween(paralaxTimelineHeader)
-    .addIndicators({name: "'Header' paralax"})
+    // .addIndicators({name: "'Header' paralax"})
     .addTo(paralaxCtrl);
 
 
@@ -179,7 +179,7 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'how', sections.how.el),
 })
     .setClassToggle(sections.how.menu, 'active')
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
 /**
@@ -208,7 +208,7 @@ paralaxTimelineHow
 
 new ScrollMagic.Scene({ triggerElement: sections.how.el, duration: '100%' })
     .setTween(paralaxTimelineHow)
-    .addIndicators({name: "'How' paralax"})
+    // .addIndicators({name: "'How' paralax"})
     .addTo(paralaxCtrl);
 
 
@@ -220,7 +220,7 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'who', sections.who.el),
 })
     .setClassToggle(sections.who.menu, 'active')
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
 /**
@@ -236,7 +236,7 @@ paralaxTimelineWho.staggerFrom($userWraps, 3, { opacity: 0, scale: 0.2 }, 0.5);
 
 new ScrollMagic.Scene({ triggerElement: sections.who.el, duration: '50%' })
     .setTween(paralaxTimelineWho)
-    .addIndicators({name: "'Who' paralax"})
+    // .addIndicators({name: "'Who' paralax"})
     .addTo(paralaxCtrl);
 
 
@@ -248,7 +248,7 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'footer', sections.footer.el),
 })
     .setClassToggle(sections.footer.menu, 'active')
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
 
@@ -270,5 +270,5 @@ paralaxTimelineFooter
 
 new ScrollMagic.Scene({ triggerElement: sections.footer.el, duration: '100%' })
     .setTween(paralaxTimelineFooter)
-    .addIndicators({name: "'Who' paralax"})
+    // .addIndicators({name: "'Who' paralax"})
     .addTo(paralaxCtrl);

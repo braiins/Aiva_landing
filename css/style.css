@@ -331,9 +331,12 @@ html, body {
     position: relative;
     display: inline-block;
     margin: 14rem auto 0;
-    color: #8D01C4; }
+    color: #8D01C4;
+    min-width: 100%; }
     #how .how--map img {
       display: block; }
+    #how .how--map .how--house {
+      min-width: 100%; }
     #how .how--map .how--head--wrap {
       bottom: 12%;
       left: 12%;
@@ -456,8 +459,9 @@ html, body {
   .section.purple:before {
     width: 95%; }
 
-  #how .usersIcon {
-    margin-top: 10rem; } }
+  #how .how--map {
+    margin-top: 10rem;
+    transform: scale(0.75); } }
 @media (max-width: 1200px) {
   .centerColumn {
     padding: 0 15px; }
@@ -470,12 +474,6 @@ html, body {
 
   .section.purple:before {
     width: 100%; }
-
-  .col--narrow {
-    width: 55% !important; }
-
-  .col--wide {
-    width: 45% !important; }
 
   #pager {
     left: 0; } }
