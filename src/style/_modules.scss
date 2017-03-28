@@ -1,0 +1,41 @@
+@import "mixins";
+@import "colors";
+
+@keyframes mousewheelWiggle {
+    0%   { @include transform(translateY(0%)); }
+    75%  { @include transform(translateY(45%)); }
+    100% { @include transform(translateY(50%)); }
+}
+
+.mouse {
+    $w: 27px;
+
+    position: relative;
+    display: block;
+    width: $w;
+    height: $w * 1.7;
+    border-radius: $w / 2;
+
+    background-color: transparent;
+    border: 1px solid $purple-light;
+    box-shadow: inset 0 0 2px $purple-light;
+
+
+    &:after {
+        display: block;
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: $w / 4;
+        top: $w / 2.8;
+        left: 50%;
+        margin-left: -1px;
+        background-color: $purple-light;
+        border-radius: 2px;
+        box-shadow: 0 0 1px $purple-light;
+
+        -webkit-animation: mousewheelWiggle 0.8s infinite alternate;
+           -moz-animation: mousewheelWiggle 0.8s infinite alternate;
+                animation: mousewheelWiggle 0.8s infinite alternate;
+    }
+}

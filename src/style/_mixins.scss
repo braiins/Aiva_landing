@@ -1,0 +1,50 @@
+@mixin transform($value) {
+    -webkit-transform: $value;
+       -moz-transform: $value;
+            transform: $value;
+}
+
+@mixin transformOrigin($value) {
+    -webkit-transform-origin: $value;
+       -moz-transform-origin: $value;
+            transform-origin: $value;
+}
+
+@mixin transition($trans) {
+  -webkit-transition: $trans;
+     -moz-transition: $trans;
+          transition: $trans;
+}
+
+@mixin transitionDelay($value) {
+    -webkit-transition-delay: $value;
+       -moz-transition-delay: $value;
+            transition-delay: $value;
+}
+
+
+@keyframes pulse {
+    0%   { @include transform(scale(1)); opacity: 0; }
+    75%  { opacity: 0.3; }
+    100% { @include transform(scale(2)); opacity: 0; }
+}
+
+@mixin pulseCircle ($width:5em, $height:5em, $bgColor: transparent, $pulse: true) {
+    border-radius: 100%;
+    position: absolute;
+
+    width: $width;
+    height: $height;
+    top: 50%;
+    left: 50%;
+    margin-top: -($width / 2);
+    margin-left: -($width / 2);
+
+    background-color: $bgColor;
+
+    @if($pulse) {
+        -webkit-animation: pulse 1.2s ease-out infinite;
+        -moz-animation: pulse 1.2s ease-out infinite;
+        animation: pulse 1.2s ease-out infinite;
+    }
+}

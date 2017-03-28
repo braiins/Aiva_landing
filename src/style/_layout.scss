@@ -1,8 +1,5 @@
-@mixin transition($trans) {
-  -webkit-transition: $trans;
-     -moz-transition: $trans;
-          transition: $trans;
-}
+@import "colors";
+@import "mixins";
 
 $minWidth: 1000px;
 
@@ -25,6 +22,7 @@ html, body {
           transition: all 150ms ease-in-out;
 }
 .relFloat { position: relative; float: left; }
+.absBlock { position: absolute; display: block; }
 
 
 // General Layouting
@@ -35,14 +33,11 @@ html, body {
     max-width: 1100px;
     margin: 0 auto;
 }
-.half {
-    @extend .relFloat;
-    width: 50%;
-}
-.third {
-    @extend .relFloat;
-    width: 33.3333%;
-}
+.col--half { @extend .relFloat; width: 50%; }
+.col--third { @extend .relFloat; width: 33.3333%; }
+.col--narrow { @extend .relFloat; width: 45%; }
+.col--wide { @extend .relFloat; width: 55%; }
+
 .padded {
     padding: 0 15px;
 }
@@ -82,10 +77,78 @@ html, body {
     &.purple .title { color: #fff; }
 }
 
+#pager {
+    $animatedCount: 5;
+    $size: 32px;
+
+    position: fixed;
+    z-index: 999;
+    top: 30%;
+    left: 5%;
+    padding: 16px 0;
+    background-color: rgba(255, 255, 255, .85);
+
+    .page {
+        position: relative;
+        padding: $size / 2;
+        cursor: pointer;
+
+        &:after {
+            display: block;
+            content: '';
+
+            width: 12px;
+            height: 12px;
+            left: 50%;
+
+            background-color: $purple-light;
+            border-radius: 100%;
+
+            @include transform(scale(0.3333));
+            @include transition(all 250ms ease-in-out);
+        }
+
+        &:hover:after,
+        &.active:after {
+            @include transform(none);
+        }
+
+        opacity: 0;
+        @include transform(scale(0));
+        @include transformOrigin(center center);
+        @include transition(all 600ms ease-in-out);
+    }
+
+    &.in .page {
+        opacity: 1;
+        @include transform(none);
+    }
+
+    // Staggered delay of pages transition
+    // Only 5 items will staggered, rest goes together
+    .page:nth-child(n + #{$animatedCount + 1}) {
+        @include transitionDelay(0.1s * $animatedCount);
+    }
+
+    @for $i from 1 through $animatedCount {
+        .page:nth-child(#{$i}) {
+            @include transitionDelay(0.1s * $i);
+        }
+    }
+}
+
 
 #header {
-    padding: 130px 0;
+    padding: 50px 0 120px;
     overflow: hidden;
+
+    .note {
+        text-align: center;
+        color: $purple-light;
+        font-size: 1.5rem;
+        font-style: italic;
+        margin-bottom: 5rem;
+    }
 
     .logo {
         @extend .animatedAll;
@@ -95,15 +158,18 @@ html, body {
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
     }
 
-    .bgImage {
-        @extend .animatedAll;
+    .hand {
         pointer-events: none;
         position: absolute;
         z-index: 1;
         bottom: 0;
         right: 0;
-        max-width: 40%;
-        min-width: 600px;
+        max-width: 35%;
+        min-width: 350px;
+
+        @include transform(translate(65%, 0) scale(1.3));
+        @include transformOrigin(bottom);
+        @include transition(all 600ms ease-in-out);
     }
 
     .bgClaims {
@@ -114,7 +180,7 @@ html, body {
 
         position: absolute;
         bottom: 0;
-        right: -15%;
+        right: -10%;
 
         text-align: center;
         font-size: 16rem;
@@ -126,6 +192,23 @@ html, body {
     }
 
     .content { position: relative; z-index: 2; }
+
+    .mouse {
+        position: absolute;
+        margin: 0 auto;
+        bottom: 50px;
+        left: 50%;
+
+        @include transition(all 800ms cubic-bezier(0.175, 0.885, 0.32, 1.275));
+        @include transform(translate(0, 250%));
+    }
+
+
+    // Slide-in the hand image
+    &.show-hand .hand { @include transform(none); }
+
+    // Slide-in the mouse "image"
+    &.show-mouse .mouse { @include transform(none); }
 }
 
 #why {
@@ -133,30 +216,27 @@ html, body {
 
     .stats {
         text-align: center;
-        margin-top: 6rem;
-
-
 
         .num {
-            font-size: 6rem;
+            font-size: 8.3rem;
             font-weight: 800;
-            margin-bottom: .3em;
+            line-height: 2.5em;
+            margin-bottom: -.5em;
         }
         .label {
-            font-size: 2rem;
+            font-size: 2.8rem;
             font-weight: 600;
-            line-height: 1.8;
+            line-height: 1.5;
         }
     }
 }
 
 #how {
+    $devicesCount: 5;
+
     // Raised box overflows the top edge
     overflow: visible;
     z-index: 2;
-
-    .how--left { @extend .relFloat; width: 45%; }
-    .how--righ { @extend .relFloat; width: 55%; }
 
     .raised {
         position: relative;
@@ -182,9 +262,131 @@ html, body {
         }
     }
 
-    .usersIcon {
-        margin-top: 18rem;
-        max-width: 30%;
+    .how--map {
+        position: relative;
+        display: inline-block;
+        margin: 14rem auto 0;
+        color: $purple-light;
+
+        img { display: block; }
+
+        .how--house {}
+
+        .how--head--wrap {
+            @extend .absBlock;
+            bottom: 12%;
+            left: 12%;
+            text-align: center;
+
+            // - Animated circle under the images
+            // - Won't be shown by default
+            &:after {
+                @include pulseCircle(9em, 9em, $purple-light);
+                z-index: 1;
+                display: none;
+                content: '';
+                top: 49%;
+            }
+
+            // - Over the animated circle
+            // - Both animated from top + opacity
+            .how--head--head,
+            .how--head--logo {
+                position: relative;
+                margin-top: 16px;
+                z-index: 2;
+
+                opacity: 0;
+                @include transform(translateY(-1rem));
+                @include transition(all 200ms ease-in-out);
+            }
+            .how--head--head {}
+            .how--head--logo {
+                -webkit-transition-delay: .08s;
+                -moz-transition-delay: .08s;
+                transition-delay: .08s;
+                margin-top: 16px;
+            }
+        }
+
+        .how--house--devices {
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 0; right: 0;
+
+            // Device wrapper
+            .device {
+                position: absolute;
+
+                .img {
+                    width: 37px;
+                    height: 37px;
+                    margin: 0 auto;
+                    background: transparent url('../img/how--device.png') no-repeat center center;
+                    transform: scale(0.2);
+                    @include transition(all 300ms ease-in-out);
+
+                    // Won't be shown by default
+                    &:after {
+                        display: none;
+                        content: '';
+                        @include pulseCircle(4em, 4em, $purple-light);
+                    }
+                }
+            }
+
+            // Device labels
+            .label {
+                display: block;
+                font-size: 1.3rem;
+                font-weight: bold;
+                font-family: "jaf-domus-titling-web", sans-serif;
+                white-space: nowrap;
+                margin: 0.5em;
+                text-align: center;
+
+                opacity: 0;
+                @include transition(opacity 300ms ease-in-out);
+            }
+
+            // Delay each each device img and label
+            @for $i from 1 through $devicesCount {
+                .device:nth-child(#{$i}) .img,
+                .device:nth-child(#{$i}) .label {
+                    @include transitionDelay(0.2s * $i);
+                }
+            }
+
+            .pulseCircle {
+                background-color: $purple-light;
+
+                position: absolute;
+                width: 5em;
+                height: 5em;
+
+                top: -0.5em;
+                left: 0.5em;
+            }
+        }
+    }
+
+
+
+    // Scale-in device images
+    &.show-devices .how--house--devices .img { transform: scale(1) !important; }
+
+    // Fade-in location labels
+    &.show-labels .how--house--devices .label { opacity: 1 !important; }
+
+    // Show the pulsing circles
+    &.show-circles .how--head--wrap:after,
+    &.show-circles .how--house--devices .img:after { display: block !important; }
+
+    // Fade-in logo
+    &.show-logo .how--head--wrap .how--head--head,
+    &.show-logo .how--head--wrap .how--head--logo {
+        @include transform(none);
+        opacity: 1;
     }
 }
 
@@ -262,14 +464,8 @@ html, body {
 @media (max-width: 1500px) {
     html, body { font-size: 9px; }
     .centerColumn { max-width: 85%; }
-
-    .section.purple:before {
-       width: 95%;
-   }
-
-    #how .usersIcon {
-        margin-top: 10rem;
-    }
+    .section.purple:before { width: 95%; }
+    #how .usersIcon { margin-top: 10rem; }
 }
 
 @media (max-width: 1200px) {
@@ -278,6 +474,8 @@ html, body {
     .centerColumn > .padded:last-child { padding-right: 0; }
     .section.purple:before { width: 100%; }
 
-    .how--left { width: 55%!important; }
-    .how--righ { width: 45%!important; }
+    .col--narrow { width: 55%!important; }
+    .col--wide { width: 45%!important; }
+
+    #pager { left: 0; }
 }

@@ -12,39 +12,46 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-96161412-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="header" class="section">
+        <div id="pager" class="in">
+            <div class="page" onclick="console.info('1');"></div>
+            <div class="page" onclick="console.info('2');"></div>
+            <div class="page" onclick="console.info('3');"></div>
+            <div class="page" onclick="console.info('4');"></div>
+            <div class="page" onclick="console.info('5');"></div>
+
+            <div class="page" onclick="console.info('1');"></div>
+            <div class="page" onclick="console.info('2');"></div>
+            <div class="page" onclick="console.info('3');"></div>
+            <div class="page" onclick="console.info('4');"></div>
+            <div class="page" onclick="console.info('5');"></div>
+        </div>
+
+        <div id="header" class="section show-hand show-mouse">
             <div class="centerColumn content">
-                <img src="img/logo-header.png" alt="logo" class="logo">
+                <p class="note">
+                    Please note this is not a product demo (we don't have one yet) but rather a short overview.
+                </p>
+
+                <img src="img/logo-header.png" alt="logo" class="logo" />
                 <p class="emphasis color-purple-dark">
                     Aiva is personal data platform providing real-time, <br>
-                    actionable information in regards to health <br>
-                    emergency, care and prevention.
+                    actionable information in regards to health emergency, <br>
+                    care and prevention.
                 </p>
                 <p class="color-gray">
                     We believe tech, when applied to healthcare, can provide novel solutions.<br>
                     With the aging population worldwide, Aiva deliveres a new,<br>
                     scalable solution to the emerging healthcare concerns.
-                    <br>
                 </p>
             </div>
 
-            <img src="img/header-bg.png" alt="header background" class="bgImage">
+            <img src="img/header-hand.png" alt="header background" class="hand" />
             <ul class="bgClaims font-domus">
                 <li>46.8 million</li>
                 <li>DEMENTIA</li>
@@ -52,20 +59,24 @@
                 <li>OVER 65S</li>
                 <li>559 MILLION</li>
             </ul>
+
+            <div class="mouse"></div>
         </div>
 
         <div id="why" class="section purple right">
             <div class="centerColumn">
-                <div class="half padded">
+                <div class="col--half padded">
                     <div class="stats">
-                        <div class="num font-domus">560 million</div>
+                        <div class="num font-domus">
+                            <span style="font-size: 2.5em; display: block; margin-bottom: -.3em;">560</span> million
+                        </div>
                         <div class="label">
                            over 65 year olds are living <br>
                            worldwide today
                         </div>
                     </div>
                 </div>
-                <div class="half padded">
+                <div class="col--half padded">
                     <h2 class="title">Why this space</h2>
                     <p>The self-monitoring space is very fragmented and there is yet to be a unifying platform gathering
                         actionable, real-time data. For the majority of patients, the only alternative is manual data
@@ -77,9 +88,9 @@
             </div>
         </div>
 
-        <div id="how" class="section">
+        <div id="how" class="section show-devices show-labels show-circles show-logo">
             <div class="centerColumn">
-                <div class="how--left padded">
+                <div class="col--narrow padded">
                     <div class="raised">
                         <h2 class="title">How it works</h2>
 
@@ -94,8 +105,37 @@
                         </p>
                     </div>
                 </div>
-                <div class="how--right padded text-center">
-                    <img src="img/users.png" alt="users" class="usersIcon">
+                <div class="col--wide">
+                    <div class="how--map">
+                        <img src="img/how--house.png" alt="house outline" class="how--house" />
+                        <div class="how--house--devices">
+                            <div class="device" style="top: 11%; left: 8%;">
+                                <div class="img"></div>
+                                <div class="label">Sleeping</div>
+                            </div>
+                            <div class="device" style="top: 38%; left: 56%;">
+                                <div class="img"></div>
+                                <div class="label">Relaxing<br>& Working</div>
+                            </div>
+                            <div class="device" style="top: 65%; right: -8%;">
+                                <div class="img"></div>
+                                <div class="label" style="margin-left: 35px;">Entering<br>& leaving</div>
+                            </div>
+                            <div class="device" style="top: 78%; left: 73%;">
+                                <div class="img"></div>
+                                <div class="label">Toilet</div>
+                            </div>
+                            <div class="device" style="top: 82%; left: 49%;">
+                                <div class="label">Eating</div>
+                                <div class="img"></div>
+                            </div>
+                        </div>
+
+                        <div class="how--head--wrap">
+                            <img src="img/how--head.png" alt="assistent" class="how--head--head" />
+                            <img src="img/how--head--logo.png" alt="logo" class="how--head--logo" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,8 +145,8 @@
                 <h2 class="title">Our customer</h2>
 
                 <div class="usersWrapper">
-                    <div class="third padded text-center">
-                        <img src="img/user_icon.png" alt="user icon" class="user--icon">
+                    <div class="col--third padded text-center">
+                        <img src="img/user_icon.png" alt="user icon" class="user--icon" />
                         <h3 class="user--title font-domus">Caregivers</h3>
                         <div class="user--info">
                             Aiva enabling caregivers <br>
@@ -114,16 +154,16 @@
                         </div>
                     </div>
 
-                    <div class="third padded text-center">
-                        <img src="img/user_icon.png" alt="user icon" class="user--icon">
+                    <div class="col--third padded text-center">
+                        <img src="img/user_icon.png" alt="user icon" class="user--icon" />
                         <h3 class="user--title font-domus">OVER 65s</h3>
                         <div class="user--info">
                             Aiva preventing the unneccesary <br> medical emergencies
                         </div>
                     </div>
 
-                    <div class="third padded text-center">
-                        <img src="img/user_icon.png" alt="user icon" class="user--icon">
+                    <div class="col--third padded text-center">
+                        <img src="img/user_icon.png" alt="user icon" class="user--icon" />
                         <h3 class="user--title font-domus">Pharma</h3>
                         <div class="user--info">
                            The possibilities of leveraging <br>
@@ -138,30 +178,40 @@
                 <div class="centerColumn text-center">
                     <h2 class="title">Opportunity to create change</h2>
                     <div class="stats">
-                        <div class="half entry">
+                        <div class="col--half entry">
                             <div class="num font-domus">+10 000</div>
                             <div class="label">people turning 65 <br>every day in the US</div>
                         </div>
-                        <div class="half entry">
+                        <div class="col--half entry">
                             <div class="num font-domus">69%</div>
                             <div class="label">of over 65s will <br>develop disabilities</div>
                         </div>
-                        <div class="half entry">
+                        <div class="col--half entry">
                             <div class="num font-domus">90%</div>
                             <div class="label">said they want to age<br> at their home</div>
                         </div>
-                        <div class="half entry">
+                        <div class="col--half entry">
                             <div class="num font-domus">35%</div>
                             <div class="label">over 65s will <br>eventually enter a nursing home</div>
                         </div>
                     </div>
 
                 </div>
-                <img class="logo" src="img/logo-footer.png" alt="logo">
+                <img class="logo" src="img/logo-footer.png" alt="logo" />
                 <div class="copy">© Aiva Healthcare 2017</div>
             </div>
 
         <script src="https://use.typekit.net/mmg5ocj.js"></script>
         <script>try { Typekit.load({async: true}); } catch (e) { }</script>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-96161412-1', 'auto');
+            ga('send', 'pageview');
+        </script>
     </body>
 </html>
