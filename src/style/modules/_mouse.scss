@@ -1,5 +1,5 @@
-@import "mixins";
-@import "colors";
+@import "../mixins";
+@import "../colors";
 
 @keyframes mousewheelWiggle {
     0%   { @include transform(translateY(0%)); }

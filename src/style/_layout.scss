@@ -114,27 +114,7 @@ html, body {
             @include transform(none);
         }
 
-        opacity: 0;
-        @include transform(scale(0));
         @include transformOrigin(center center);
-        @include transition(all 600ms ease-in-out);
-    }
-
-    &.in .page {
-        opacity: 1;
-        @include transform(none);
-    }
-
-    // Staggered delay of pages transition
-    // Only 5 items will staggered, rest goes together
-    .page:nth-child(n + #{$animatedCount + 1}) {
-        @include transitionDelay(0.1s * $animatedCount);
-    }
-
-    @for $i from 1 through $animatedCount {
-        .page:nth-child(#{$i}) {
-            @include transitionDelay(0.1s * $i);
-        }
     }
 }
 
@@ -152,10 +132,7 @@ html, body {
         margin-bottom: 5rem;
     }
 
-    .logo {
-        @extend .animatedAll;
-        margin: 0 0 100px;
-    }
+    .logo { margin: 0 0 100px; }
     p {
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
     }
@@ -169,9 +146,9 @@ html, body {
         max-width: 35%;
         min-width: 350px;
 
-        @include transform(translate(65%, 0) scale(1.3));
+        // Initial state
+        @include transform(translate(100%, 0) scale(1.3) translate3d(0px, 0px, 0px));
         @include transformOrigin(bottom);
-        @include transition(transform 600ms ease-in-out);
     }
 
     .bgClaims {
@@ -200,17 +177,7 @@ html, body {
         margin: 0 auto;
         bottom: 50px;
         left: 50%;
-
-        @include transition(all 800ms cubic-bezier(0.175, 0.885, 0.32, 1.275));
-        @include transform(translate(0, 250%));
     }
-
-
-    // Slide-in the hand image
-    &.show-hand .hand { @include transform(none); }
-
-    // Slide-in the mouse "image"
-    &.show-mouse .mouse { @include transform(none); }
 }
 
 #why {
@@ -442,9 +409,6 @@ html, body {
     .centerColumn > .padded:first-child { padding-left: 0; }
     .centerColumn > .padded:last-child { padding-right: 0; }
     .section.purple:before { width: 100%; }
-
-    //.col--narrow { width: 55%!important; }
-    //.col--wide { width: 45%!important; }
 
     #pager { left: 0; }
 }

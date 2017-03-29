@@ -118,6 +118,86 @@ onResize();
 /** Build scenes */
 
 /**
+ * # Boot sequence (on content load)
+ * 1. full-screen logo in & out
+ * 2. header content in
+ */
+var bootTween = new TimelineLite({ paused: true });
+window.addEventListener('load', function() {
+    // Scroll does not seem to work imediately,
+    // so we'll force it to the end of the queue
+    setTimeout(function () {
+        window.scrollTo(0, 0);
+        bootTween.play();
+    }, 0);
+});
+
+var $boot = gebi('boot');
+var $bootLogo = gebi('boot--logo');
+
+/**
+ * The logo animation goes in particular orderm,
+ * so the stagger* elements must be selected accordingly.
+ *
+ * 1 | 4 | 3 | 2
+ * A | I | V | A
+ */
+var $bootLogoLetters = [
+    $bootLogo.querySelector('.a1'),
+    $bootLogo.querySelector('.a2'),
+    $bootLogo.querySelector('.v'),
+    $bootLogo.querySelector('.i')
+];
+var $bootLogoSubline = $bootLogo.querySelector('.sub');
+
+var $header = gebi('header');
+var $headerMouse = $header.querySelector('.mouse');
+var $headerHand = $header.querySelector('.hand');
+var $headerStaggerSet = $header.querySelectorAll('.content > *');
+
+var $pager = gebi('pager');
+var $pagerPages = pager.querySelectorAll('.page');
+
+bootTween
+    .to(window, 0, { scrollTo: { y: 0 } })
+    // Letters in
+    .staggerTo($bootLogoLetters, 0.6, { opacity: 1, scale: 1 }, 0.2, '+=0.5')
+
+    // Sub-line in
+    .to($bootLogoSubline, 3, { opacity: 1, scale: 1 })
+
+    // Whole logo out
+    .to($bootLogo, 1, { opacity: 0 })
+
+    // Whole boot out + "remove"
+    .to($boot, 1, { opacity: 0 })
+    .to($boot, 0, { display: 'none' });
+
+// Split-off header content to it's own sub-timeline
+// so that we can be sure that all is concurent
+//  => $headerHand's position can be set to '0'
+var headerContentTimeline = new TimelineLite();
+headerContentTimeline
+    .staggerFrom($headerStaggerSet, 1, { y: '-40%', opacity: 0 })
+
+    // Slide-in hand
+    .fromTo($headerHand, $headerStaggerSet.length / 2,
+        { x: '100%', scale: 1.3 },
+        { x: '0%', scale: 1, ease: Power2.easeOut },
+        '0'
+    )
+
+    // Slide-up mouse glyph
+    .from($headerMouse, 1, { y: 300, ease: Back.easeOut.config(1.7) }, '-=0.6')
+
+    // Zoom-in pager circles
+    .from($pagerPages, 2, { opacity: 0, scale: 0, ease: Power2.easeOut }, 1);
+
+// Add to parent timeline
+bootTween.add(headerContentTimeline, '-=0.7');
+
+
+/**
  * # Header
  */
 new ScrollMagic.Scene({
@@ -203,10 +283,12 @@ paralaxTimelineHow
     .staggerFrom(['.how--head--head', '.how--head--logo'], 4, { y: '-10px', opacity: 0 }, 0.3, '-=5')
 
     // Then labels
-    .staggerFrom($devLbls, 4, { opacity: 0 }, 0.3, '-=3');
+    .staggerFrom($devLbls, 1, { opacity: 0 }, 0.3, '-=4');
+
+    // .call(addClass, [sections.how.el, 'show-circles'], null, '-=1');
 
 
-new ScrollMagic.Scene({ triggerElement: sections.how.el, duration: '100%' })
+new ScrollMagic.Scene({ triggerElement: sections.how.el, duration: '100%', offset: -100 })
     .setTween(paralaxTimelineHow)
     // .addIndicators({name: "'How' paralax"})
     .addTo(paralaxCtrl);
