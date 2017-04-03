@@ -4,6 +4,7 @@ var controller = new ScrollMagic.Controller({
 });
 var paralaxCtrl = new ScrollMagic.Controller({
     globalSceneOptions: { triggerHook: 0.75 },
+    // addIndicators: true,
 });
 
 /**
@@ -213,6 +214,23 @@ new ScrollMagic.Scene({
 
 
 /**
+ * ## Paralax
+ * Background claims + slower hand
+ * CSS-animated transition is already used on hand, so we'll use margin instead
+ */
+var paralaxTimelineHeader = new TimelineMax();
+paralaxTimelineHeader.to('#header .bgClaims', 1, { y: '100%', ease: Linear.easeNone });
+paralaxTimelineHeader.to('#header .hand', 1.3, { marginBottom: -500, ease: Linear.easeNone }, 0);
+paralaxTimelineHeader.to('#header .content', 1.3, { y: 200, opacity: 0, ease: Linear.easeNone }, 0);
+
+new ScrollMagic.Scene({ triggerElement: sections.why.el, duration: '100%' })
+    .setTween(paralaxTimelineHeader)
+    // .addIndicators({name: "'Header' paralax"})
+    .addTo(paralaxCtrl);
+
+
+
+/**
  * # Why
  */
 var __why__ = {
@@ -239,21 +257,6 @@ new ScrollMagic.Scene({
 
     .addTo(controller);
 
-/**
- * ## Paralax
- * Background claims + slower hand
- * CSS-animated transition is already used on hand, so we'll use margin instead
- */
-var paralaxTimelineHeader = new TimelineMax();
-paralaxTimelineHeader.to('#header .bgClaims', 1, { y: '100%', ease: Linear.easeNone });
-paralaxTimelineHeader.to('#header .hand', 1.3, { marginBottom: -500, ease: Linear.easeNone }, '0');
-
-new ScrollMagic.Scene({ triggerElement: sections.why.el, duration: '100%' })
-    .setTween(paralaxTimelineHeader)
-    // .addIndicators({name: "'Header' paralax"})
-    .addTo(paralaxCtrl);
-
-
 
 
 /**
@@ -261,10 +264,14 @@ new ScrollMagic.Scene({ triggerElement: sections.why.el, duration: '100%' })
  *  - Slide-up columns (floor-plan slower)
  *  - floor plan sequence
  */
+// Set initial state
+TweenLite.set('#how .raised', { y: '50%', opacity: 0.6 });
+TweenLite.set('#how .how--map', { y: '50%', opacity: 0.6 });
 var howFloorPlanSequence = new TimelineMax({ paused: true });
 howFloorPlanSequence
-    .from('#how .raised', 1, { y: '50%', opacity: 0.6, ease: Power3.easeOut })
-    .from('#how .how--map', 1.2, { y: '50%', opacity: 0.6, ease: Power3.easeOut }, '-=1');
+    .staggerTo(['#how .raised', '#how .how--map'], 1,
+        { y: '0%', opacity: 1, ease: Power3.easeOut }, 0.2
+    );
 
 var $devices = sections.how.el.querySelector('.how--house--devices');
 var $devImgs = $devices.querySelectorAll('.img');
@@ -300,17 +307,17 @@ howFloorPlanSequence
     // Loop pulsing circles
     .add(circlesTimeline, '-=1');
 
+var howEntered = false;
 new ScrollMagic.Scene({
     triggerElement: sections.how.el,
     duration: getSectionDuration.bind(null, 'how', sections.how.el),
 })
     .setClassToggle(sections.how.menu, 'active')
-    // .addIndicators()
     .addTo(controller)
 
     .on('start', function (event) {
-        if (event.scrollDirection !== 'FORWARD') return;
-        if (!booted) return;
+        if (event.scrollDirection !== 'FORWARD' || howEntered || !booted) return;
+        howEntered = true;
         howFloorPlanSequence.play(0);
     });
 
@@ -332,17 +339,21 @@ new ScrollMagic.Scene({
  * ## Paralax
  * Slide-up columns (floor-plan slower)
  */
-var paralaxTimelineWho = new TimelineMax();
+var paralaxTimelineWho = new TimelineMax({ paused: true });
 var $userWraps = sections.who.el.querySelectorAll('.who--user--wrap');
 
 // Fade-in wrappers
-paralaxTimelineWho.staggerFrom($userWraps, 3, { opacity: 0, scale: 0.2 }, 0.5);
+paralaxTimelineWho.staggerFrom($userWraps, 1.3, { opacity: 0, scale: 0.2 }, 0.5);
 
 
+var whoEntered = false;
 new ScrollMagic.Scene({ triggerElement: sections.who.el, duration: '50%' })
-    .setTween(paralaxTimelineWho)
-    // .addIndicators({name: "'Who' paralax"})
-    .addTo(paralaxCtrl);
+    .addTo(paralaxCtrl)
+    .on('start', function (event) {
+        if (event.scrollDirection !== 'FORWARD' || whoEntered || !booted) return;
+        whoEntered = true;
+        paralaxTimelineWho.play(0);
+    });
 
 
 /**
@@ -353,7 +364,6 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'footer', sections.footer.el),
 })
     .setClassToggle(sections.footer.menu, 'active')
-    // .addIndicators()
     .addTo(controller);
 
 
@@ -367,16 +377,20 @@ var $footerLabels = sections.footer.el.querySelectorAll('.entry .label');
 
 paralaxTimelineFooter
     // Fade-in wrappers
-    .staggerFrom($footerEntries, 3, { opacity: 0, scale: 0.75 }, 0.5, '+=0.5')
+    .staggerFrom($footerEntries, 1.3, { opacity: 0, scale: 0.75 }, 0.5, '+=0.5')
 
     // Fade-in labels
-    .staggerFrom($footerLabels, 3, { opacity: 0 }, 0.5, '-=2');
+    .staggerFrom($footerLabels, 1.3, { opacity: 0 }, 0.5, '-=2');
 
 
+var footerEntered = false;
 new ScrollMagic.Scene({ triggerElement: sections.footer.el, duration: '100%' })
-    .setTween(paralaxTimelineFooter)
-    // .addIndicators({name: "'Who' paralax"})
-    .addTo(paralaxCtrl);
+    .addTo(paralaxCtrl)
+    .on('start', function (event) {
+        if (event.scrollDirection !== 'FORWARD' || footerEntered || !booted) return;
+        footerEntered = true;
+        paralaxTimelineFooter.play(0);
+    });
 
 
 /**
