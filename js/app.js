@@ -158,6 +158,7 @@ var $bootLogoSubline = $bootLogo.querySelector('.sub');
 
 var $header = gebi('header');
 var $headerMouse = $header.querySelector('.mouse');
+var mouseIsOut = false; // Mouse will be hidden on first scroll
 var $headerHand = $header.querySelector('.hand');
 var $headerStaggerSet = $header.querySelectorAll('.content > *');
 
@@ -165,26 +166,24 @@ var $pager = gebi('pager');
 var $pagerPages = pager.querySelectorAll('.page');
 
 bootTween
-    .to(window, 0, { scrollTo: { y: 0 } })
     // Letters in
-    .staggerTo($bootLogoLetters, 0.6, { opacity: 1, scale: 1 }, 0.2, '+=0.5')
+    .staggerTo($bootLogoLetters, 0.6, { autoAlpha: 1, scale: 1 }, 0.2, '+=0.5')
 
     // Sub-line in
-    .to($bootLogoSubline, 3, { opacity: 1, scale: 1 })
+    .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
 
     // Whole logo out
-    .to($bootLogo, 1, { opacity: 0 })
+    .to($bootLogo, 1, { autoAlpha: 0 })
 
     // Whole boot out + "remove"
-    .to($boot, 1, { opacity: 0 })
-    .to($boot, 0, { display: 'none' });
+    .to($boot, 1, { autoAlpha: 0 });
 
 // Split-off header content to it's own sub-timeline
 // so that we can be sure that all is concurent
 //  => $headerHand's position can be set to '0'
 var headerContentTimeline = new TimelineMax();
 headerContentTimeline
-    .staggerFrom($headerStaggerSet, 1, { y: '-40%', opacity: 0 })
+    .staggerFrom($headerStaggerSet, 1, { y: '-40%', autoAlpha: 0 })
 
     // Slide-in hand
     .fromTo($headerHand, $headerStaggerSet.length / 2,
@@ -194,10 +193,11 @@ headerContentTimeline
     )
 
     // Slide-up mouse glyph
+    .set($headerMouse, { autoAlpha: 1 })
     .from($headerMouse, 1, { y: 300, ease: Back.easeOut.config(1.7) }, '-=0.6')
 
     // Zoom-in pager circles
-    .from($pagerPages, 2, { opacity: 0, scale: 0, ease: Power2.easeOut }, 1);
+    .from($pagerPages, 2, { autoAlpha: 0, scale: 0, ease: Power2.easeOut }, 1);
 
 // Add to parent timeline
 bootTween.add(headerContentTimeline, '-=0.7');
@@ -212,7 +212,12 @@ new ScrollMagic.Scene({
 })
     .setClassToggle(sections.header.menu, 'active')
     // .addIndicators()
-    .addTo(controller);
+    .addTo(controller)
+
+    .on('end', function(event) {
+        if (event.scrollDirection === 'FORWARD' && !mouseIsOut)
+            TweenLite.to($headerMouse, 1, { autoAlpha: 0 })
+    });
 
 
 /**
@@ -308,7 +313,7 @@ new ScrollMagic.Scene({
     duration: getSectionDuration.bind(null, 'how', sections.how.el),
 })
     .setClassToggle(sections.how.menu, 'active')
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller)
 
     .on('start', function (event) {
