@@ -27,7 +27,7 @@ var menuItems = [];
 function gebi(id) { return document.getElementById(id) }
 
 /**
- * @param {Node} elem
+ * @param {Element} elem
  * @param {String} classname
  */
 function addClass (elem, classname) {
@@ -37,13 +37,14 @@ function addClass (elem, classname) {
     }
 }
 /**
- * @param {Node} elem
+ * @param {Element} elem
  * @param {String} classname
  */
 function removeClass (elem, classname) {
     if (classname) {
         if (elem.classList) elem.classList.remove(classname);
-        else elem.className = elem.className.replace(new RegExp('(^|\\b)' + classname.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        else elem.className = elem.className
+            .replace(new RegExp('(^|\\b)' + classname.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     }
 }
 
@@ -87,21 +88,21 @@ sections.footer.menu = addMenuItem(sections.footer.el);
 var durationCache = {};
 /**
  * @desc Get cached value of section duration
- *
  * @param {String} cacheKey
- * @param {Node} node
- *
  * @return {Number}
  */
-function getSectionDuration(cacheKey, node) {
-    return durationCache[cacheKey] || 0;
+function getSectionDuration(cacheKey) {
+    return Math.round(durationCache[cacheKey].height || 0);
+}
+function getSectionLeftEdge(cacheKey) {
+    return Math.round(durationCache[cacheKey].left || 0);
 }
 
 /** @desc Recalculate dimensions of sections on window resize */
 function onResize() {
     for (var key in sections) {
         var node = sections[key].el;
-        durationCache[key] = Math.round(node.getBoundingClientRect().height);
+        durationCache[key] = node.getBoundingClientRect();
     }
 }
 window.addEventListener('resize', onResize);
@@ -159,14 +160,14 @@ var $pager = gebi('pager');
 var $pagerPages = pager.querySelectorAll('.page');
 
 bootTween
-    // // Letters in
-    // .staggerTo($bootLogoLetters, 0.6, { autoAlpha: 1, scale: 1 }, 0.2, '+=0.5')
-    //
-    // // Sub-line in
-    // .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
-    //
-    // // Whole logo out
-    // .to($bootLogo, 1, { autoAlpha: 0 })
+    // Letters in
+    .staggerTo($bootLogoLetters, 0.6, { autoAlpha: 1, scale: 1 }, 0.2, '+=0.5')
+
+    // Sub-line in
+    .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
+
+    // Whole logo out
+    .to($bootLogo, 1, { autoAlpha: 0 })
 
     // Whole boot out + "remove"
     .to($boot, 1, { autoAlpha: 0 });
@@ -201,7 +202,7 @@ bootTween.add(headerContentTimeline, '-=0.7');
  */
 new ScrollMagic.Scene({
     triggerElement: sections.header.el,
-    duration: getSectionDuration.bind(null, 'header', sections.header.el),
+    duration: getSectionDuration.bind(null, 'header'),
 })
     .setClassToggle(sections.header.menu, 'active')
     // .addIndicators()
@@ -239,7 +240,7 @@ var __why__ = {
 };
 new ScrollMagic.Scene({
     triggerElement: sections.why.el,
-    duration: getSectionDuration.bind(null, 'why', sections.why.el),
+    duration: getSectionDuration.bind(null, 'why'),
 })
     .setClassToggle(sections.why.menu, 'active')
     // .addIndicators()
@@ -310,7 +311,7 @@ howFloorPlanSequence
 var howEntered = false;
 new ScrollMagic.Scene({
     triggerElement: sections.how.el,
-    duration: getSectionDuration.bind(null, 'how', sections.how.el),
+    duration: getSectionDuration.bind(null, 'how'),
 })
     .setClassToggle(sections.how.menu, 'active')
     .addTo(controller)
@@ -329,7 +330,7 @@ new ScrollMagic.Scene({
  */
 new ScrollMagic.Scene({
     triggerElement: sections.who.el,
-    duration: getSectionDuration.bind(null, 'who', sections.who.el),
+    duration: getSectionDuration.bind(null, 'who'),
 })
     .setClassToggle(sections.who.menu, 'active')
     // .addIndicators()
@@ -361,7 +362,7 @@ new ScrollMagic.Scene({ triggerElement: sections.who.el, duration: '50%' })
  */
 new ScrollMagic.Scene({
     triggerElement: sections.footer.el,
-    duration: getSectionDuration.bind(null, 'footer', sections.footer.el),
+    duration: getSectionDuration.bind(null, 'footer'),
 })
     .setClassToggle(sections.footer.menu, 'active')
     .addTo(controller);
@@ -402,25 +403,52 @@ new ScrollMagic.Scene({ triggerElement: sections.footer.el, duration: '100%' })
  * on the respective menu item when it enters the pruple section
  */
 menuItems.forEach(function(item, index) {
+    // These values are calculated and used as percentages,
+    // so they should be as stable as it gets and so
+    // no recalculation should really be needed
     var bbox = item.getBoundingClientRect();
     var wh = document.documentElement.clientHeight;
     var cx = bbox.top - (bbox.height / 2);
 
+    // Separate controller (=> trigger point) for each menu item
     var ctrl = new ScrollMagic.Controller({ globalSceneOptions: { triggerHook: cx / wh } });
 
-    new ScrollMagic.Scene({
+    var s1 = new ScrollMagic.Scene({
         triggerElement: sections.why.el,
-        duration: getSectionDuration.bind(null, 'why', sections.why.el),
+        duration: getSectionDuration.bind(null, 'why'),
     })
-        // .addIndicators({ colorTrigger: 'chartreuse', indent: 40 })
-        .setClassToggle(item, 'inverse')
         .addTo(ctrl);
 
-    new ScrollMagic.Scene({
+    var s2 = new ScrollMagic.Scene({
         triggerElement: sections.who.el,
-        duration: getSectionDuration.bind(null, 'who', sections.who.el),
+        duration: getSectionDuration.bind(null, 'who'),
     })
-        // .addIndicators({ colorTrigger: 'chartreuse', indent: 40 })
-        .setClassToggle(item, 'inverse')
         .addTo(ctrl);
+
+    setClassToggle(s1, 'why',
+        function() { return sections.why.el.classList.contains('left') },
+        item, 'inverse');
+    setClassToggle(s2, 'who',
+        function() { return sections.who.el.classList.contains('left') },
+        item, 'inverse');
 });
+
+
+
+/**
+ * @desc port of scrollMagic's `setClassToggle` to allow for dinamic className logic
+ *
+ * @param {Object} scene
+ * @param {String} cacheKey
+ * @param {Function} isLeftGetter
+ * @param {Element} element
+ * @param {string} classes
+ *
+ * @return {undefined}
+ */
+function setClassToggle(scene, cacheKey, isLeftGetter, element, classes) {
+    scene.on('enter.internal_class leave.internal_class', function(event) {
+        if (!isLeftGetter()) return;
+        (event.type === 'enter' ? addClass : removeClass)(element, classes);
+    });
+}
