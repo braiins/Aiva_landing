@@ -71,19 +71,6 @@ p {
 .color-white {
   color: white; }
 
-@keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    transform: scale(1);
-    opacity: 0; }
-  75% {
-    opacity: 0.3; }
-  100% {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    transform: scale(2);
-    opacity: 0; } }
 html, body {
   width: 100%;
   padding: 0;
@@ -105,6 +92,18 @@ html, body {
 .absBlock, #how .how--map .how--head--wrap {
   position: absolute;
   display: block; }
+
+.pulseCircle {
+  position: absolute;
+  border-radius: 100%;
+  top: 50%;
+  left: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  background-color: #8D01C4;
+  opacity: .4; }
 
 .centerColumn {
   width: 100%;
@@ -288,22 +287,9 @@ html, body {
       bottom: 12%;
       left: 12%;
       text-align: center; }
-      #how .how--map .how--head--wrap:after {
-        border-radius: 100%;
-        position: absolute;
-        width: 9em;
-        height: 9em;
-        top: 50%;
-        left: 50%;
-        margin-top: -4.5em;
-        margin-left: -4.5em;
-        background-color: #8D01C4;
-        -webkit-animation: pulse 1.2s ease-out infinite;
-        -moz-animation: pulse 1.2s ease-out infinite;
-        animation: pulse 1.2s ease-out infinite;
+      #how .how--map .how--head--wrap .pulseCircle {
+        font-size: 10rem;
         z-index: 1;
-        display: none;
-        content: '';
         top: 49%; }
       #how .how--map .how--head--wrap .how--head--head,
       #how .how--map .how--head--wrap .how--head--logo {
@@ -323,21 +309,8 @@ html, body {
           height: 37px;
           margin: 0 auto;
           background: transparent url("../img/how--device.png") no-repeat center center; }
-          #how .how--map .how--house--devices .device .img:after {
-            display: none;
-            content: '';
-            border-radius: 100%;
-            position: absolute;
-            width: 4em;
-            height: 4em;
-            top: 50%;
-            left: 50%;
-            margin-top: -2em;
-            margin-left: -2em;
-            background-color: #8D01C4;
-            -webkit-animation: pulse 1.2s ease-out infinite;
-            -moz-animation: pulse 1.2s ease-out infinite;
-            animation: pulse 1.2s ease-out infinite; }
+          #how .how--map .how--house--devices .device .img .pulseCircle {
+            font-size: 4em; }
       #how .how--map .how--house--devices .label {
         display: block;
         font-size: 1.3rem;
@@ -346,8 +319,6 @@ html, body {
         white-space: nowrap;
         margin: 0.5em;
         text-align: center; }
-  #how.show-circles .how--head--wrap:after, #how.show-circles .how--house--devices .img:after {
-    display: block !important; }
 
 #who {
   z-index: 4;
@@ -424,19 +395,6 @@ html, body {
 
   #pager {
     left: 0; } }
-@keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    transform: scale(1);
-    opacity: 0; }
-  75% {
-    opacity: 0.3; }
-  100% {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    transform: scale(2);
-    opacity: 0; } }
 .color-purple-light {
   color: #8D01C4; }
 
@@ -503,19 +461,6 @@ html, body {
     -moz-transform: scale(0.9) translate3d(0px, 0px, 0px);
     transform: scale(0.9) translate3d(0px, 0px, 0px); }
 
-@keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    transform: scale(1);
-    opacity: 0; }
-  75% {
-    opacity: 0.3; }
-  100% {
-    -webkit-transform: scale(2);
-    -moz-transform: scale(2);
-    transform: scale(2);
-    opacity: 0; } }
 .color-purple-light {
   color: #8D01C4; }
 

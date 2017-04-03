@@ -23,6 +23,20 @@ html, body {
 }
 .relFloat { position: relative; float: left; }
 .absBlock { position: absolute; display: block; }
+.pulseCircle {
+    position: absolute;
+    border-radius: 100%;
+
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    margin-top: -(1em / 2);
+    margin-left: -(1em / 2);
+
+    background-color: $purple-light;
+    opacity: .4;
+}
 
 
 // General Layouting
@@ -260,11 +274,9 @@ html, body {
 
             // - Animated circle under the images
             // - Won't be shown by default
-            &:after {
-                @include pulseCircle(9em, 9em, $purple-light);
+            .pulseCircle {
+                font-size: 10rem;
                 z-index: 1;
-                display: none;
-                content: '';
                 top: 49%;
             }
 
@@ -294,10 +306,8 @@ html, body {
                     background: transparent url('../img/how--device.png') no-repeat center center;
 
                     // Won't be shown by default
-                    &:after {
-                        display: none;
-                        content: '';
-                        @include pulseCircle(4em, 4em, $purple-light);
+                    .pulseCircle {
+                        font-size: 4em;
                     }
                 }
             }
@@ -314,11 +324,6 @@ html, body {
             }
         }
     }
-
-
-    // Show the pulsing circles
-    &.show-circles .how--head--wrap:after,
-    &.show-circles .how--house--devices .img:after { display: block !important; }
 }
 
 #who {
