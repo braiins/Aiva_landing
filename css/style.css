@@ -59,6 +59,9 @@ p {
   font-weight: 600;
   line-height: 1.7em; }
 
+.font-tight {
+  letter-spacing: -0.05em; }
+
 .color-purple-light {
   color: #8D01C4; }
 
@@ -329,7 +332,8 @@ html, body {
   #who .usersWrapper {
     margin-top: 6rem; }
     #who .usersWrapper .user--icon {
-      max-width: 43%; }
+      max-width: 43%;
+      height: 158px; }
     #who .usersWrapper .user--title {
       font-size: 3.8rem;
       margin: 2rem 0 1rem; }
