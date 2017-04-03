@@ -137,6 +137,7 @@ html, body {
     z-index: 1;
     padding: 50px 0 120px;
     overflow: hidden;
+    min-height: 90vh;
 
     .note {
         text-align: center;
@@ -224,6 +225,7 @@ html, body {
 
 #how {
     z-index: 3;
+    min-height: 70vh;
     $devicesCount: 5;
 
     // Raised box overflows the top edge
@@ -397,6 +399,11 @@ html, body {
         color: $gray;
         margin: 2.7rem;
     }
+}
+
+#why,
+#who {
+    min-height: 80vh;
 }
 
 

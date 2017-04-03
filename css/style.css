@@ -195,7 +195,8 @@ html, body {
 #header {
   z-index: 1;
   padding: 50px 0 120px;
-  overflow: hidden; }
+  overflow: hidden;
+  min-height: 90vh; }
   #header .note {
     text-align: center;
     color: #8D01C4;
@@ -264,6 +265,7 @@ html, body {
 
 #how {
   z-index: 3;
+  min-height: 70vh;
   overflow: visible; }
   #how .raised {
     position: relative;
@@ -373,6 +375,10 @@ html, body {
     right: 0;
     color: #565656;
     margin: 2.7rem; }
+
+#why,
+#who {
+  min-height: 80vh; }
 
 @media (max-width: 1500px) {
   html, body {
