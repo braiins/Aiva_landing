@@ -98,10 +98,9 @@ html, body {
 
     position: fixed;
     z-index: 999;
-    top: 30%;
+    top: 50%;
     left: 5%;
-    padding: 16px 0;
-    background-color: rgba(255, 255, 255, .85);
+    @include transform(translate(0, -50%));
 
     .page {
         position: relative;
@@ -122,6 +121,7 @@ html, body {
             @include transform(scale(0.3333));
             @include transition(all 250ms ease-in-out);
         }
+        &.inverse:after { background-color: #fff; }
 
         &:hover:after,
         &.active:after {

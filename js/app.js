@@ -1,15 +1,9 @@
 // init scrollMagic controller
 var controller = new ScrollMagic.Controller({
-    globalSceneOptions: {
-        triggerHook: 0.6,
-        loglevel: 2,
-    }
+    globalSceneOptions: { triggerHook: 0.6 },
 });
 var paralaxCtrl = new ScrollMagic.Controller({
-    globalSceneOptions: {
-        triggerHook: 0.75,
-        loglevel: 2,
-    }
+    globalSceneOptions: { triggerHook: 0.75 },
 });
 
 /**
@@ -89,8 +83,6 @@ sections.who.menu = addMenuItem(sections.who.el);
 sections.footer.menu = addMenuItem(sections.footer.el);
 
 
-
-
 var durationCache = {};
 /**
  * @desc Get cached value of section duration
@@ -166,14 +158,14 @@ var $pager = gebi('pager');
 var $pagerPages = pager.querySelectorAll('.page');
 
 bootTween
-    // Letters in
-    .staggerTo($bootLogoLetters, 0.6, { autoAlpha: 1, scale: 1 }, 0.2, '+=0.5')
-
-    // Sub-line in
-    .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
-
-    // Whole logo out
-    .to($bootLogo, 1, { autoAlpha: 0 })
+    // // Letters in
+    // .staggerTo($bootLogoLetters, 0.6, { autoAlpha: 1, scale: 1 }, 0.2, '+=0.5')
+    //
+    // // Sub-line in
+    // .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
+    //
+    // // Whole logo out
+    // .to($bootLogo, 1, { autoAlpha: 0 })
 
     // Whole boot out + "remove"
     .to($boot, 1, { autoAlpha: 0 });
@@ -385,3 +377,36 @@ new ScrollMagic.Scene({ triggerElement: sections.footer.el, duration: '100%' })
     .setTween(paralaxTimelineFooter)
     // .addIndicators({name: "'Who' paralax"})
     .addTo(paralaxCtrl);
+
+
+/**
+ * @desc
+ * Each menu item will have it's own controller
+ * with 2 scenes (2 purple sections).
+ *
+ * These sections goal is just to trigger a `.inverse` css class
+ * on the respective menu item when it enters the pruple section
+ */
+menuItems.forEach(function(item, index) {
+    var bbox = item.getBoundingClientRect();
+    var wh = document.documentElement.clientHeight;
+    var cx = bbox.top - (bbox.height / 2);
+
+    var ctrl = new ScrollMagic.Controller({ globalSceneOptions: { triggerHook: cx / wh } });
+
+    new ScrollMagic.Scene({
+        triggerElement: sections.why.el,
+        duration: getSectionDuration.bind(null, 'why', sections.why.el),
+    })
+        // .addIndicators({ colorTrigger: 'chartreuse', indent: 40 })
+        .setClassToggle(item, 'inverse')
+        .addTo(ctrl);
+
+    new ScrollMagic.Scene({
+        triggerElement: sections.who.el,
+        duration: getSectionDuration.bind(null, 'who', sections.who.el),
+    })
+        // .addIndicators({ colorTrigger: 'chartreuse', indent: 40 })
+        .setClassToggle(item, 'inverse')
+        .addTo(ctrl);
+});
