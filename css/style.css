@@ -376,10 +376,6 @@ html, body {
     color: #565656;
     margin: 2.7rem; }
 
-#why,
-#who {
-  min-height: 80vh; }
-
 @media (max-width: 1500px) {
   html, body {
     font-size: 9px; }
