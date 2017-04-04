@@ -1,18 +1,19 @@
 @import "colors";
 @import "mixins";
 
-$minWidth: 1000px;
-
 html, body {
     width: 100%;
     padding: 0;
     margin: 0;
-    min-width: $minWidth;
 }
 * {
     box-sizing: border-box;
 }
 
+#contentWrapper {
+    position: relative;
+    height: 100%;
+}
 
 // Base classes
 
@@ -147,10 +148,13 @@ html, body {
         margin-bottom: 5rem;
     }
 
-    .logo { margin: 0 0 100px; }
-    p {
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    .logo {
+        display: block;
+        margin: 0 0 100px;
     }
+
+    p { text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); }
+    p.emphasis { max-width: 560px; }
 
     .hand {
         pointer-events: none;
@@ -265,7 +269,7 @@ html, body {
         img { display: block; }
 
         .how--house {
-            min-width: 100%;
+            width: 100%;
         }
 
         .how--head--wrap {
@@ -390,7 +394,7 @@ html, body {
     .logo {
         display: inline-block;
         margin: 0 auto 64px;
-        max-width: 15%;
+        max-width: 60%;
     }
     .copy {
         font-size: 1.4rem;
@@ -406,11 +410,8 @@ html, body {
     html, body { font-size: 9px; }
     .centerColumn { max-width: 85%; }
     .section.purple:before { width: 95%; }
-    #how .how--map {
-        margin-top: 10rem;
-        transform: scale(0.75);
-    }
-    #pager .page.inverseNarrow:after { background-color: #fff; }
+    #how .how--map { margin-top: 10rem; zoom: 0.9; }
+    #pager { left: 3px; }
 }
 
 @media (max-width: 1200px) {
@@ -419,5 +420,109 @@ html, body {
     .centerColumn > .padded:last-child { padding-right: 0; }
     .section.purple:before { width: 100%; }
 
-    #pager { left: 0; }
+
+    #pager .page.inverseNarrow:after { background-color: #fff; }
+    #header {
+        * { text-align: center; }
+        .logo { margin: { left: auto; right: auto }; }
+    }
 }
+
+@media (max-width: 1100px) {
+    #how {
+        .title { text-align: center; }
+
+        .col--narrow,
+        .col--wide {
+            width: 100%;
+            float: none;
+            clear: both;
+            margin-bottom: 32px;
+        }
+
+        .raised {
+            margin: 3rem 0 0;
+            padding: 0;
+
+            -webkit-box-shadow: none !important;
+               -moz-box-shadow: none !important;
+                    box-shadow: none !important;
+        }
+
+        .how--map {
+            margin-top: 0;
+            zoom: 1;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    #how .how--map { zoom: 0.9; }
+
+    #who {
+        .col--third {
+            width: 100%;
+            float: none;
+            clear: both;
+        }
+        .col--third + .col--third {
+            margin-top: 7rem;
+        }
+    }
+
+    #footer .stats .entry {
+        width: 100%;
+        float: none;
+        clear: both;
+    }
+}
+
+#why .centerColumn > .title { display: none; margin-bottom: -2rem; }
+@media (max-width: 800px) {
+    #why {
+        .centerColumn > .title { display: block; }
+        .col--half {
+            width: 100%;
+            float: none;
+            clear: both;
+            margin-bottom: 32px;
+
+            .title { display: none; }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    #how .how--map { zoom: 0.7; }
+}
+
+@media (max-width: 600px) {
+    .emphasis { font-size: 2.4rem; }
+    #header { padding-bottom: 250px; }
+}
+
+@media (max-width: 500px) {
+    #header { padding-bottom: 250px; }
+    #why .stats .num {
+        font-size: 6rem;
+        margin-bottom: -.2em;
+    }
+    #why .stats .label {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    #how .how--map { zoom: 0.6; }
+
+    #footer .stats .entry .num {
+        font-size: 7rem;
+    }
+}
+
+@media (max-width: 400px) {
+    #footer .stats .entry .num {
+        font-size: 4rem;
+    }
+}
+

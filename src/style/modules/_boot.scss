@@ -56,3 +56,9 @@
     }
 
 }
+
+@media (max-width: 425px) {
+    #boot--logo {
+        @include transform(translate(-50%, -50%) scale(0.65));
+    }
+}

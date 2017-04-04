@@ -77,11 +77,14 @@ p {
 html, body {
   width: 100%;
   padding: 0;
-  margin: 0;
-  min-width: 1000px; }
+  margin: 0; }
 
 * {
   box-sizing: border-box; }
+
+#contentWrapper {
+  position: relative;
+  height: 100%; }
 
 .animatedAll, .section.purple:before {
   -webkit-transition: all 150ms ease-in-out;
@@ -204,9 +207,12 @@ html, body {
     font-style: italic;
     margin-bottom: 5rem; }
   #header .logo {
+    display: block;
     margin: 0 0 100px; }
   #header p {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); }
+  #header p.emphasis {
+    max-width: 560px; }
   #header .hand {
     pointer-events: none;
     position: absolute;
@@ -272,9 +278,9 @@ html, body {
     margin: -2rem 0 10rem;
     display: inline-block;
     padding: 8rem 7rem 12rem;
-    -webkit-box-shadow: 0px 0px 115px 0px rgba(0, 0, 0, 0.05), 4px 40px 177px 0px rgba(0, 0, 0, 0.03);
-    -moz-box-shadow: 0px 0px 115px 0px rgba(0, 0, 0, 0.05), 4px 40px 177px 0px rgba(0, 0, 0, 0.03);
-    box-shadow: 0px 0px 115px 0px rgba(0, 0, 0, 0.05), 4px 40px 177px 0px rgba(0, 0, 0, 0.03);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03), 16px 16px 40px 0px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03), 16px 16px 40px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03), 16px 16px 40px 0px rgba(0, 0, 0, 0.03);
     background-color: #fff;
     color: #565656; }
     #how .raised .emphasis {
@@ -290,7 +296,7 @@ html, body {
     #how .how--map img {
       display: block; }
     #how .how--map .how--house {
-      min-width: 100%; }
+      width: 100%; }
     #how .how--map .how--head--wrap {
       bottom: 12%;
       left: 12%;
@@ -367,7 +373,7 @@ html, body {
   #footer .logo {
     display: inline-block;
     margin: 0 auto 64px;
-    max-width: 15%; }
+    max-width: 60%; }
   #footer .copy {
     font-size: 1.4rem;
     position: absolute;
@@ -388,10 +394,10 @@ html, body {
 
   #how .how--map {
     margin-top: 10rem;
-    transform: scale(0.75); }
+    zoom: 0.9; }
 
-  #pager .page.inverseNarrow:after {
-    background-color: #fff; } }
+  #pager {
+    left: 3px; } }
 @media (max-width: 1200px) {
   .centerColumn {
     padding: 0 15px; }
@@ -405,8 +411,91 @@ html, body {
   .section.purple:before {
     width: 100%; }
 
-  #pager {
-    left: 0; } }
+  #pager .page.inverseNarrow:after {
+    background-color: #fff; }
+
+  #header * {
+    text-align: center; }
+  #header .logo {
+    margin-left: auto;
+    margin-right: auto; } }
+@media (max-width: 1100px) {
+  #how .title {
+    text-align: center; }
+  #how .col--narrow,
+  #how .col--wide {
+    width: 100%;
+    float: none;
+    clear: both;
+    margin-bottom: 32px; }
+  #how .raised {
+    margin: 3rem 0 0;
+    padding: 0;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important; }
+  #how .how--map {
+    margin-top: 0;
+    zoom: 1; } }
+@media (max-width: 900px) {
+  #how .how--map {
+    zoom: 0.9; }
+
+  #who .col--third {
+    width: 100%;
+    float: none;
+    clear: both; }
+  #who .col--third + .col--third {
+    margin-top: 7rem; }
+
+  #footer .stats .entry {
+    width: 100%;
+    float: none;
+    clear: both; } }
+#why .centerColumn > .title {
+  display: none;
+  margin-bottom: -2rem; }
+
+@media (max-width: 800px) {
+  #why .centerColumn > .title {
+    display: block; }
+  #why .col--half {
+    width: 100%;
+    float: none;
+    clear: both;
+    margin-bottom: 32px; }
+    #why .col--half .title {
+      display: none; } }
+@media (max-width: 700px) {
+  #how .how--map {
+    zoom: 0.7; } }
+@media (max-width: 600px) {
+  .emphasis {
+    font-size: 2.4rem; }
+
+  #header {
+    padding-bottom: 250px; } }
+@media (max-width: 500px) {
+  #header {
+    padding-bottom: 250px; }
+
+  #why .stats .num {
+    font-size: 6rem;
+    margin-bottom: -.2em; }
+
+  #why .stats .label {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.5; }
+
+  #how .how--map {
+    zoom: 0.6; }
+
+  #footer .stats .entry .num {
+    font-size: 7rem; } }
+@media (max-width: 400px) {
+  #footer .stats .entry .num {
+    font-size: 4rem; } }
 .color-purple-light {
   color: #8D01C4; }
 
@@ -473,6 +562,11 @@ html, body {
     -moz-transform: scale(0.9) translate3d(0px, 0px, 0px);
     transform: scale(0.9) translate3d(0px, 0px, 0px); }
 
+@media (max-width: 425px) {
+  #boot--logo {
+    -webkit-transform: translate(-50%, -50%) scale(0.65);
+    -moz-transform: translate(-50%, -50%) scale(0.65);
+    transform: translate(-50%, -50%) scale(0.65); } }
 .color-purple-light {
   color: #8D01C4; }
 

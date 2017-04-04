@@ -263,11 +263,11 @@ new ScrollMagic.Scene({
  *  - floor plan sequence
  */
 // Set initial state
-TweenLite.set('#how .raised', { y: '50%', opacity: 0.6 });
-TweenLite.set('#how .how--map', { y: '50%', opacity: 0.6 });
+TweenLite.set('#how .col--narrow', { y: '50%', opacity: 0.6 });
+TweenLite.set('#how .col--wide', { y: '50%', opacity: 0.6 });
 var howFloorPlanSequence = new TimelineMax({ paused: true });
 howFloorPlanSequence
-    .staggerTo(['#how .raised', '#how .how--map'], 1,
+    .staggerTo(['#how .col--narrow', '#how .col--wide'], 1,
         { y: '0%', opacity: 1, ease: Power3.easeOut }, 0.2
     );
 
