@@ -31,10 +31,10 @@ function gebi(id) { return document.getElementById(id) }
  * @param {String} classname
  */
 function addClass (elem, classname) {
-    if (classname) {
-        if (elem.classList) elem.classList.add(classname);
-        else elem.className += ' ' + classname;
-    }
+    if (!classname) return;
+
+    if (elem.classList) classname.split(' ').forEach(function(c) { elem.classList.add(c); });
+    else elem.className += ' ' + classname;
 }
 /**
  * @param {Element} elem
@@ -42,7 +42,7 @@ function addClass (elem, classname) {
  */
 function removeClass (elem, classname) {
     if (classname) {
-        if (elem.classList) elem.classList.remove(classname);
+        if (elem.classList) classname.split(' ').forEach(function(c) { elem.classList.remove(c); });
         else elem.className = elem.className
             .replace(new RegExp('(^|\\b)' + classname.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     }
@@ -93,9 +93,6 @@ var durationCache = {};
  */
 function getSectionDuration(cacheKey) {
     return Math.round(durationCache[cacheKey].height || 0);
-}
-function getSectionLeftEdge(cacheKey) {
-    return Math.round(durationCache[cacheKey].left || 0);
 }
 
 /** @desc Recalculate dimensions of sections on window resize */
@@ -425,12 +422,8 @@ menuItems.forEach(function(item, index) {
     })
         .addTo(ctrl);
 
-    setClassToggle(s1, 'why',
-        function() { return sections.why.el.classList.contains('left') },
-        item, 'inverse');
-    setClassToggle(s2, 'who',
-        function() { return sections.who.el.classList.contains('left') },
-        item, 'inverse');
+    setClassToggle(s1, 'why', item, false);
+    setClassToggle(s2, 'who', item, true);
 });
 
 
@@ -440,15 +433,13 @@ menuItems.forEach(function(item, index) {
  *
  * @param {Object} scene
  * @param {String} cacheKey
- * @param {Function} isLeftGetter
  * @param {Element} element
- * @param {string} classes
+ * @param {Boolean} onAll
  *
  * @return {undefined}
  */
-function setClassToggle(scene, cacheKey, isLeftGetter, element, classes) {
+function setClassToggle(scene, cacheKey, element, onAll) {
     scene.on('enter.internal_class leave.internal_class', function(event) {
-        if (!isLeftGetter()) return;
-        (event.type === 'enter' ? addClass : removeClass)(element, classes);
+        (event.type === 'enter' ? addClass : removeClass)(element, onAll ? 'inverse' : 'inverseNarrow');
     });
 }

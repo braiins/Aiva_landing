@@ -388,7 +388,10 @@ html, body {
 
   #how .how--map {
     margin-top: 10rem;
-    transform: scale(0.75); } }
+    transform: scale(0.75); }
+
+  #pager .page.inverseNarrow:after {
+    background-color: #fff; } }
 @media (max-width: 1200px) {
   .centerColumn {
     padding: 0 15px; }

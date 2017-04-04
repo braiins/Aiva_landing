@@ -401,11 +401,6 @@ html, body {
     }
 }
 
-//#why,
-//#who {
-//    min-height: 80vh;
-//}
-
 
 @media (max-width: 1500px) {
     html, body { font-size: 9px; }
@@ -415,6 +410,7 @@ html, body {
         margin-top: 10rem;
         transform: scale(0.75);
     }
+    #pager .page.inverseNarrow:after { background-color: #fff; }
 }
 
 @media (max-width: 1200px) {
