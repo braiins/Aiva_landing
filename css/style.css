@@ -334,8 +334,8 @@ html, body {
   #who .usersWrapper {
     margin-top: 6rem; }
     #who .usersWrapper .user--icon {
-      max-width: 43%;
-      height: 158px; }
+      height: 158px;
+      width: auto; }
     #who .usersWrapper .user--title {
       font-size: 3.8rem;
       margin: 2rem 0 1rem; }
