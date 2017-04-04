@@ -494,6 +494,7 @@ html, body {
 
 @media (max-width: 700px) {
     #how .how--map { zoom: 0.7; }
+    #pager { display: none; }
 }
 
 @media (max-width: 600px) {
