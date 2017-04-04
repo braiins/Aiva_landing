@@ -272,9 +272,9 @@ html, body {
     margin: -2rem 0 10rem;
     display: inline-block;
     padding: 8rem 7rem 12rem;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03), 16px 16px 40px 0px rgba(0, 0, 0, 0.03);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03), 16px 16px 40px 0px rgba(0, 0, 0, 0.03);
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03), 16px 16px 40px 0px rgba(0, 0, 0, 0.03);
+    -webkit-box-shadow: 0px 0px 115px 0px rgba(0, 0, 0, 0.05), 4px 40px 177px 0px rgba(0, 0, 0, 0.03);
+    -moz-box-shadow: 0px 0px 115px 0px rgba(0, 0, 0, 0.05), 4px 40px 177px 0px rgba(0, 0, 0, 0.03);
+    box-shadow: 0px 0px 115px 0px rgba(0, 0, 0, 0.05), 4px 40px 177px 0px rgba(0, 0, 0, 0.03);
     background-color: #fff;
     color: #565656; }
     #how .raised .emphasis {
