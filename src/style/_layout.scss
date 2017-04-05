@@ -148,7 +148,7 @@ html, body {
         margin-bottom: 5rem;
     }
 
-    .logo {
+    .logo--static {
         display: block;
         margin: 0 0 100px;
     }
@@ -420,11 +420,15 @@ html, body {
     .centerColumn > .padded:last-child { padding-right: 0; }
     .section.purple:before { width: 100%; }
 
-
     #pager .page.inverseNarrow:after { background-color: #fff; }
     #header {
         * { text-align: center; }
-        .logo { margin: { left: auto; right: auto }; }
+
+        .logo--static:before,
+        .logo--static:after {
+            display: block;
+            margin: { left: auto; right: auto; };
+        }
     }
 }
 
