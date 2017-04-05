@@ -586,7 +586,7 @@ html, body {
     transform: scale(0.9) translate3d(0px, 0px, 0px); }
 
 @media (max-width: 425px) {
-  #boot--logo {
+  .boot--logo {
     -webkit-transform: translate(-50%, -50%) scale(0.65);
     -moz-transform: translate(-50%, -50%) scale(0.65);
     transform: translate(-50%, -50%) scale(0.65); } }
