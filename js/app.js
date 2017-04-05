@@ -47,6 +47,24 @@ function removeClass (elem, classname) {
             .replace(new RegExp('(^|\\b)' + classname.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     }
 }
+/**
+ * @desc Restarts GIF by setting it's `src` to empty string and back
+ * @param {Element} el
+ * @return {undefined}
+ */
+function restartGif (el) {
+    if(!el) return;
+    var src = el.src,
+        dis = el.style.display;
+
+    // Hide and remove src
+    el.style.display = 'none';
+    el.src = '';
+
+    // Revert
+    el.style.display = dis;
+    el.src = src;
+}
 
 
 /**
@@ -130,10 +148,11 @@ window.addEventListener('load', function() {
 
 var booted = false;
 var $boot = gebi('boot');
-var $bootLogo = gebi('boot--logo');
+var $bootLogo = $boot.querySelector('.boot--logo');
+var $bootParticlesGif = $boot.querySelector('.particles');
 
 /**
- * The logo animation goes in particular orderm,
+ * The logo animation goes in particular order,
  * so the stagger* elements must be selected accordingly.
  *
  * 1 | 4 | 3 | 2
@@ -160,8 +179,14 @@ bootTween
     // Letters in
     .staggerTo($bootLogoLetters, 0.6, { autoAlpha: 1, scale: 1 }, 0.2, '+=0.5')
 
-    // Sub-line in
-    .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
+    .add(
+        new TimelineMax()
+            // Sub-line in
+            .to($bootLogoSubline, 3, { autoAlpha: 1, scale: 1 })
+            // Restart & show the GIF
+            .call(restartGif, [], null, 0.4)
+            .to($bootParticlesGif, 2, { autoAlpha: 1 }, 0.5)
+    )
 
     // Whole logo out
     .to($bootLogo, 1, { autoAlpha: 0 })

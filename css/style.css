@@ -370,10 +370,21 @@ html, body {
         font-size: 1.8rem;
         font-weight: 600;
         line-height: 1.8em; }
-  #footer .logo {
+  #footer .boot--logo {
+    position: relative;
+    top: inherit;
+    left: inherit;
     display: inline-block;
     margin: 0 auto 64px;
-    max-width: 60%; }
+    max-width: 60%;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    transform: translate(0, 0); }
+    #footer .boot--logo > * {
+      opacity: 1;
+      -webkit-transform: translate(0, 0) scale(1);
+      -moz-transform: translate(0, 0) scale(1);
+      transform: translate(0, 0) scale(1); }
   #footer .copy {
     font-size: 1.4rem;
     position: absolute;
@@ -522,18 +533,25 @@ html, body {
   z-index: 9999;
   background-color: #fff; }
 
-#boot--logo {
+.boot--logo {
   position: absolute;
-  height: 113px;
   top: 50%;
   left: 50%;
   width: 342px;
+  height: 113px;
   font-size: 0;
   white-space: nowrap;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
-  #boot--logo > span {
+  .boot--logo .particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -133px;
+    margin-left: -224px;
+    opacity: 0; }
+  .boot--logo > span {
     position: relative;
     display: inline-block;
     height: 113px;
@@ -543,21 +561,21 @@ html, body {
     -webkit-transform: scale(0) translate3d(0px, 0px, 0px);
     -moz-transform: scale(0) translate3d(0px, 0px, 0px);
     transform: scale(0) translate3d(0px, 0px, 0px); }
-    #boot--logo > span + span {
+    .boot--logo > span + span {
       margin-left: -4.5%; }
-  #boot--logo .a1 {
+  .boot--logo .a1 {
     width: 109px;
     background-position: 0 0; }
-  #boot--logo .i {
+  .boot--logo .i {
     width: 70px;
     background-position: -109px 0; }
-  #boot--logo .v {
+  .boot--logo .v {
     width: 111px;
     background-position: -179px 0; }
-  #boot--logo .a2 {
+  .boot--logo .a2 {
     width: 109px;
     background-position: -290px 0; }
-  #boot--logo .sub {
+  .boot--logo .sub {
     width: 171px;
     height: 20px;
     background: url("../img/logo--sprite.png") no-repeat 0 100%;

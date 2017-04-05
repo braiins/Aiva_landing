@@ -9,15 +9,27 @@
 
     background-color: #fff;
 }
-#boot--logo {
+
+.boot--logo {
     position: absolute;
-    height: 113px;
     top: 50%;
     left: 50%;
     width: 342px;
+    height: 113px;
     font-size: 0; // prevent a (inline blocks) whitespace glitch when font is loaded
     white-space: nowrap;
     @include transform(translate(-50%, -50%));
+
+    // Particles GIF, initially hidden
+    // Needs to be restarted before showing!
+    .particles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -(266px / 2);
+        margin-left: -(448px / 2);
+        opacity: 0;
+    }
 
     // Letter
     > span {

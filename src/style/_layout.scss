@@ -391,10 +391,19 @@ html, body {
         }
     }
 
-    .logo {
+    .boot--logo {
+        position: relative;
+        top: inherit; left: inherit;
         display: inline-block;
         margin: 0 auto 64px;
         max-width: 60%;
+        @include transform(translate(0, 0));
+
+        // Show everything
+        > * {
+            opacity: 1;
+            @include transform(translate(0, 0) scale(1));
+        }
     }
     .copy {
         font-size: 1.4rem;
