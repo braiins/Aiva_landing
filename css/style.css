@@ -352,7 +352,7 @@ html, body {
 
 #footer {
   z-index: 5;
-  padding: 10rem 0 16rem;
+  padding: 10rem 0 40rem;
   position: relative;
   text-align: center; }
   #footer .stats {
@@ -371,15 +371,11 @@ html, body {
         font-weight: 600;
         line-height: 1.8em; }
   #footer .boot--logo {
-    position: relative;
     top: inherit;
     left: inherit;
+    bottom: 12rem;
     display: inline-block;
-    margin: 0 auto 64px;
-    max-width: 60%;
-    -webkit-transform: translate(0, 0);
-    -moz-transform: translate(0, 0);
-    transform: translate(0, 0); }
+    margin: 0 auto 64px; }
     #footer .boot--logo > * {
       opacity: 1;
       -webkit-transform: translate(0, 0) scale(1);

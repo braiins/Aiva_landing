@@ -360,7 +360,7 @@ html, body {
 
 #footer {
     z-index: 5;
-    padding: 10rem 0 16rem;
+    padding: 10rem 0 40rem;
 
     position: relative;
     text-align: center;
@@ -392,12 +392,11 @@ html, body {
     }
 
     .boot--logo {
-        position: relative;
-        top: inherit; left: inherit;
+        top: inherit;
+        left: inherit;
+        bottom: 12rem;
         display: inline-block;
         margin: 0 auto 64px;
-        max-width: 60%;
-        @include transform(translate(0, 0));
 
         // Show everything
         > * {
